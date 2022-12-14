@@ -61,4 +61,9 @@ public class Dostavljaci {
         Dostavljaci dostavljaci = (Dostavljaci) o;
         return dostavljaci.idDostavljaca==idDostavljaca;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idDostavljaca, ime, prezime, broj, datumRodjenja);
+    }
 }
