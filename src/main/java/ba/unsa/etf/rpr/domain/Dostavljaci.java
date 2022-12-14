@@ -41,4 +41,8 @@ public class Dostavljaci {
     public String getBroj() {
         return broj;
     }
+
+    public void setBroj(String broj) {
+        this.broj = broj;
+    }
 }
