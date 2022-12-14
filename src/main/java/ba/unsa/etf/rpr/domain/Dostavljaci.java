@@ -29,4 +29,8 @@ public class Dostavljaci {
     public void setIme(String ime) {
         this.ime = ime;
     }
+
+    public String getPrezime() {
+        return prezime;
+    }
 }
