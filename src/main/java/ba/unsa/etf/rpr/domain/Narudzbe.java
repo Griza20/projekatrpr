@@ -49,4 +49,12 @@ public class Narudzbe {
     public void setVrijemeNarucivanja(String vrijemeNarucivanja) {
         this.vrijemeNarucivanja = vrijemeNarucivanja;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Narudzbe narudzbe = (Narudzbe) o;
+        return idNarudzbe == narudzbe.idNarudzbe;
+    }
 }
