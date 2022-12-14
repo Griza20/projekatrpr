@@ -126,9 +126,31 @@ public class DostavljaciDaoSQLImpl implements DostavljaciDao{
         }
     }
 
+    /**
+     * Lists all deliverers from table Dostavljaci in database
+     * @return List of all deliverers
+     */
     @Override
     public List<Dostavljaci> getAll() {
-        return null;
+        String query = "SELECT * FROM Dostavljaci";
+        List<Dostavljaci> dostavljaci = new ArrayList<Dostavljaci>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Dostavljaci dostavljac = new Dostavljaci();
+                dostavljac.setIdDostavljaca(rs.getInt("idDostavljaca"));
+                dostavljac.setIme(rs.getString("ime"));
+                dostavljac.setPrezime(rs.getString("prezime"));
+                dostavljac.setBroj(rs.getString("broj"));
+                dostavljac.setDatumRodjenja(rs.getDate("datumRodjenja"));
+                dostavljaci.add(dostavljac);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return dostavljaci;
     }
 
     @Override
