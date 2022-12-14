@@ -29,4 +29,8 @@ public class Narudzbe {
     public int getIdDostavljaca() {
         return idDostavljaca;
     }
+
+    public void setIdDostavljaca(int idDostavljaca) {
+        this.idDostavljaca = idDostavljaca;
+    }
 }
