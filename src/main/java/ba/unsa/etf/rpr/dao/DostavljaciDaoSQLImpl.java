@@ -110,9 +110,20 @@ public class DostavljaciDaoSQLImpl implements DostavljaciDao{
         return null;
     }
 
+    /**
+     * Deleting a deliverer from database with given id
+     * @param id primary key of entity
+     */
     @Override
     public void delete(int id) {
-
+        String insert = "DELETE FROM Dostavljaci WHERE idDostavljaca = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
