@@ -14,4 +14,11 @@ public interface Dao<Tip> {
      * @return Entity from database
      */
     Tip getById(int id);
+
+    /**
+     * Saves entity into database
+     * @param item data that will be saved in database
+     * @return saved item
+     */
+    Tip add(Tip item);
 }
