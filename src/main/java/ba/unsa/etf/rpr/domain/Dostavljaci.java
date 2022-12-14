@@ -21,4 +21,8 @@ public class Dostavljaci {
     public void setIdDostavljaca(int idDostavljaca) {
         this.idDostavljaca = idDostavljaca;
     }
+
+    public String getIme() {
+        return ime;
+    }
 }
