@@ -49,4 +49,8 @@ public class Dostavljaci {
     public Date getDatumRodjenja() {
         return datumRodjenja;
     }
+
+    public void setDatumRodjenja(Date datumRodjenja) {
+        this.datumRodjenja = datumRodjenja;
+    }
 }
