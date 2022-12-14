@@ -83,8 +83,26 @@ public class NarudzbeDaoSQLImpl implements NarudzbeDao{
         return null;
     }
 
+    /**
+     * Updating information about already existing order in database
+     * @param item item that will be updated in database
+     * @return All information about updated order
+     */
     @Override
     public Narudzbe update(Narudzbe item) {
+        String insert = "UPDATE Dostavljaci SET narudzba = ?, vrijemeNarucivanja = ?, idRestorana = ?, idDostavljaca = ? WHERE idNarudzbe = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, item.getNarudzba());
+            stmt.setObject(2, item.getVrijemeNarucivanja());
+            stmt.setObject(3, item.getIdRestorana());
+            stmt.setObject(4, item.getIdDostavljaca());
+            stmt.setObject(5, item.getIdNarudzbe());
+            stmt.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
