@@ -41,4 +41,8 @@ public class Narudzbe {
     public void setNarudzba(String narudzba) {
         this.narudzba = narudzba;
     }
+
+    public String getVrijemeNarucivanja() {
+        return vrijemeNarucivanja;
+    }
 }
