@@ -66,4 +66,15 @@ public class Dostavljaci {
     public int hashCode() {
         return Objects.hash(idDostavljaca, ime, prezime, broj, datumRodjenja);
     }
+
+    @Override
+    public String toString() {
+        return "Dostavljaci{" +
+                "idDostavljaca=" + idDostavljaca +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", broj='" + broj + '\'' +
+                ", datumRodjenja=" + datumRodjenja +
+                '}';
+    }
 }
