@@ -61,8 +61,29 @@ public class DostavljaciDaoSQLImpl implements DostavljaciDao{
         return null;
     }
 
+    /**
+     * Adding a new deliverer to table Dostavljaci in database
+     * @param item data that will be saved in database
+     * @return All information about added deliverer
+     */
     @Override
     public Dostavljaci add(Dostavljaci item) {
+        String insert = "INSERT INTO Dostavljaci(ime,prezime,broj,datumRodjenja) VALUES(?,?,?,?)";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,item.getIme());
+            stmt.setString(2,item.getPrezime());
+            stmt.setString(3,item.getBroj());
+            stmt.setDate(4, item.getDatumRodjenja());
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setIdDostavljaca(rs.getInt(1));
+            return item;
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
