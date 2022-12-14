@@ -122,9 +122,31 @@ public class NarudzbeDaoSQLImpl implements NarudzbeDao{
         }
     }
 
+    /**
+     * Lists all orders from table Narudzbe in database
+     * @return List of all orders
+     */
     @Override
     public List<Narudzbe> getAll() {
-        return null;
+        String query = "SELECT * FROM Narudzbe";
+        List<Narudzbe> narudzbe = new ArrayList<Narudzbe>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Narudzbe narudzba = new Narudzbe();
+                narudzba.setIdNarudzbe(rs.getInt("idNarudzbe"));
+                narudzba.setNarudzba(rs.getString("narudzba"));
+                narudzba.setVrijemeNarucivanja(rs.getString("vrijemeNarucivanja"));
+                narudzba.setIdRestorana(rs.getInt("idRestorana"));
+                narudzba.setIdDostavljaca(rs.getInt("idDostavljaca"));
+                narudzbe.add(narudzba);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return narudzbe;
     }
 
     @Override
