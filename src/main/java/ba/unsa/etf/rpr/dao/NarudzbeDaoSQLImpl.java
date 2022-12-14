@@ -149,8 +149,34 @@ public class NarudzbeDaoSQLImpl implements NarudzbeDao{
         return narudzbe;
     }
 
+    /**
+     * Lists all orders from table Narudzbe in database, sorted by time of making order
+     * @return List of all orders, sorted ascending by the time of making order
+     */
     @Override
     public List<Narudzbe> getByTimeOrdered() {
-        return null;
+        String query = "SELECT * FROM Narudzbe";
+        List<Narudzbe> narudzbe = new ArrayList<Narudzbe>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Narudzbe narudzba = new Narudzbe();
+                narudzba.setIdNarudzbe(rs.getInt("idNarudzbe"));
+                narudzba.setNarudzba(rs.getString("narudzba"));
+                narudzba.setVrijemeNarucivanja(rs.getString("vrijemeNarucivanja"));
+                narudzba.setIdRestorana(rs.getInt("idRestorana"));
+                narudzba.setIdDostavljaca(rs.getInt("idDostavljaca"));
+                narudzbe.add(narudzba);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        Collections.sort(narudzbe, new Comparator<Narudzbe>() {
+            public int compare(Narudzbe n1, Narudzbe n2) {
+                return n1.getVrijemeNarucivanja().compareTo(n2.getVrijemeNarucivanja());
+            }});
+        return narudzbe;
     }
 }
