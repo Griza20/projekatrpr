@@ -54,4 +54,14 @@ public class Restorani {
     public int hashCode() {
         return Objects.hash(idRestorana, naziv, vlasnik, lokacija);
     }
+
+    @Override
+    public String toString() {
+        return "Restorani{" +
+                "idRestorana=" + idRestorana +
+                ", naziv='" + naziv + '\'' +
+                ", vlasnik='" + vlasnik + '\'' +
+                ", lokacija='" + lokacija + '\'' +
+                '}';
+    }
 }
