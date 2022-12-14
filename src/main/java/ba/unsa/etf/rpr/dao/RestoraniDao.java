@@ -15,4 +15,11 @@ public interface RestoraniDao extends Dao<Restorani> {
      * @return List of all restaurants where given parameter is a manager
      */
     List<Restorani> searchByManagerName(String vlasnik);
+
+    /**
+     * Searches for all restaurants that are nearby
+     * @param lokacija location for searching
+     * @return List of all restaurants that are nearby
+     */
+    List<Restorani> searchByLocation(String lokacija);
 }
