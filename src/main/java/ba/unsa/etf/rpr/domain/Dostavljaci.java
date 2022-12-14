@@ -53,4 +53,12 @@ public class Dostavljaci {
     public void setDatumRodjenja(Date datumRodjenja) {
         this.datumRodjenja = datumRodjenja;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dostavljaci dostavljaci = (Dostavljaci) o;
+        return dostavljaci.idDostavljaca==idDostavljaca;
+    }
 }
