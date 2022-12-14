@@ -14,8 +14,11 @@ public class Narudzbe {
         return idNarudzbe;
     }
 
-
     public void setIdNarudzbe(int idNarudzbe) {
         this.idNarudzbe = idNarudzbe;
+    }
+
+    public int getIdRestorana() {
+        return idRestorana;
     }
 }
