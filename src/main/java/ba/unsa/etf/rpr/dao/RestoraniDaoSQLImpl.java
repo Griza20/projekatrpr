@@ -59,8 +59,28 @@ public class RestoraniDaoSQLImpl implements RestoraniDao{
         return null;
     }
 
+    /**
+     * Adding a new restaurant to table Restorani in database
+     * @param item data that will be saved in database
+     * @return All information about added restaurant
+     */
     @Override
     public Restorani add(Restorani item) {
+        String insert = "INSERT INTO Restorani(naziv,vlasnik,lokacija) VALUES(?,?,?)";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,item.getNaziv());
+            stmt.setString(2,item.getVlasnik());
+            stmt.setString(3,item.getLokacija());
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setIdRestorana(rs.getInt(1));
+            return item;
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
