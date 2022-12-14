@@ -57,8 +57,29 @@ public class NarudzbeDaoSQLImpl implements NarudzbeDao{
         return null;
     }
 
+    /**
+     * Adding a new order to table Narudzbe in database
+     * @param item data that will be saved in database
+     * @return All information about added order
+     */
     @Override
     public Narudzbe add(Narudzbe item) {
+        String insert = "INSERT INTO Narudzbe(narudzba,vrijemeNarucivanja,idRestorana,idDostavljaca) VALUES(?,?,?,?)";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,item.getNarudzba());
+            stmt.setString(2,item.getVrijemeNarucivanja());
+            stmt.setInt(3,item.getIdRestorana());
+            stmt.setInt(4, item.getIdDostavljaca());
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setIdDostavljaca(rs.getInt(1));
+            return item;
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
