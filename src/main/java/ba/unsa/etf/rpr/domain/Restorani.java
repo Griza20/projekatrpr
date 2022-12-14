@@ -49,4 +49,9 @@ public class Restorani {
         Restorani restorani = (Restorani) o;
         return restorani.idRestorana==idRestorana;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRestorana, naziv, vlasnik, lokacija);
+    }
 }
