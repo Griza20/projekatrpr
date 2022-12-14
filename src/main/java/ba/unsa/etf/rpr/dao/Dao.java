@@ -21,4 +21,11 @@ public interface Dao<Tip> {
      * @return saved item
      */
     Tip add(Tip item);
+
+    /**
+     * Updates already existing entity in database
+     * @param item item that will be updated in database
+     * @return updated item
+     */
+    Tip update(Tip item);
 }
