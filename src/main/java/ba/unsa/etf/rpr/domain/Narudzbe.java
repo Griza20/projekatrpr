@@ -25,4 +25,8 @@ public class Narudzbe {
     public void setIdRestorana(int idRestorana) {
         this.idRestorana = idRestorana;
     }
+
+    public int getIdDostavljaca() {
+        return idDostavljaca;
+    }
 }
