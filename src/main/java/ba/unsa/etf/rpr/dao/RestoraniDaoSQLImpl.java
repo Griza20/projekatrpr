@@ -84,8 +84,25 @@ public class RestoraniDaoSQLImpl implements RestoraniDao{
         return null;
     }
 
+    /**
+     * Updating information about already existing restaurant in database
+     * @param item item that will be updated in database
+     * @return All information about updated restaurant
+     */
     @Override
     public Restorani update(Restorani item) {
+        String insert = "UPDATE Restorani SET naziv = ?, vlasnik = ?, lokacija = ? WHERE idRestorana = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, item.getNaziv());
+            stmt.setObject(2, item.getVlasnik());
+            stmt.setObject(3, item.getLokacija());
+            stmt.setObject(4, item.getIdRestorana());
+            stmt.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
