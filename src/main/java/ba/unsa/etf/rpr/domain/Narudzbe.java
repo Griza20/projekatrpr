@@ -62,4 +62,15 @@ public class Narudzbe {
     public int hashCode() {
         return Objects.hash(idNarudzbe, idRestorana, idDostavljaca, narudzba, vrijemeNarucivanja);
     }
+
+    @Override
+    public String toString() {
+        return "Narudzbe{" +
+                "idNarudzbe=" + idNarudzbe +
+                ", idRestorana=" + idRestorana +
+                ", idDostavljaca=" + idDostavljaca +
+                ", narudzba='" + narudzba + '\'' +
+                ", vrijemeNarucivanja='" + vrijemeNarucivanja + '\'' +
+                '}';
+    }
 }
