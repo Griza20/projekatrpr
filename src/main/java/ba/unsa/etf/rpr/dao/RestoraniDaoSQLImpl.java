@@ -122,9 +122,30 @@ public class RestoraniDaoSQLImpl implements RestoraniDao{
         }
     }
 
+    /**
+     * Lists all restaurants from table Restorani in database
+     * @return List of all restaurants
+     */
     @Override
     public List<Restorani> getAll() {
-        return null;
+        String query = "SELECT * FROM Restorani";
+        List<Restorani> restorani = new ArrayList<Restorani>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Restorani restoran = new Restorani();
+                restoran.setIdRestorana(rs.getInt("idRestorana"));
+                restoran.setNaziv(rs.getString("naziv"));
+                restoran.setVlasnik(rs.getString("vlasnik"));
+                restoran.setLokacija(rs.getString("lokacija"));
+                restorani.add(restoran);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return restorani;
     }
 
     @Override
