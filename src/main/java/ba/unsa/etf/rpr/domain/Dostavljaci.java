@@ -33,4 +33,8 @@ public class Dostavljaci {
     public String getPrezime() {
         return prezime;
     }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
 }
