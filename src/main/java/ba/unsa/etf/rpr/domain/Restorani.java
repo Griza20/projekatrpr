@@ -37,4 +37,8 @@ public class Restorani {
     public String getLokacija() {
         return lokacija;
     }
+
+    public void setLokacija(String lokacija) {
+        this.lokacija = lokacija;
+    }
 }
