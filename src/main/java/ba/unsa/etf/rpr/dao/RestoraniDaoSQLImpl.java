@@ -148,9 +148,31 @@ public class RestoraniDaoSQLImpl implements RestoraniDao{
         return restorani;
     }
 
+    /**
+     * Lists all restaurants from table Restorani in database that have same manager
+     * @param vlasnik first and last name of manager
+     * @return List of all retaurants with same manager
+     */
     @Override
     public List<Restorani> searchByManagerName(String vlasnik) {
-        return null;
+        String query = "SELECT * FROM Restorani";
+        List<Restorani> restorani = new ArrayList<Restorani>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Restorani restoran = new Restorani();
+                restoran.setIdRestorana(rs.getInt("idRestorana"));
+                restoran.setNaziv(rs.getString("naziv"));
+                restoran.setVlasnik(rs.getString("vlasnik"));
+                restoran.setLokacija(rs.getString("lokacija"));
+                if(restoran.getVlasnik().equals(vlasnik)) restorani.add(restoran);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return restorani;
     }
 
     @Override
