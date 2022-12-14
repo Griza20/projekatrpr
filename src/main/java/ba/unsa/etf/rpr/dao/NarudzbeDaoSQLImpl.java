@@ -25,8 +25,35 @@ public class NarudzbeDaoSQLImpl implements NarudzbeDao{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Gets an order from database with given id
+     * @param id primary key of entity
+     * @return All information about an order with given id
+     */
     @Override
     public Narudzbe getById(int id) {
+        String query = "SELECT * FROM Narudzbe WHERE idNarudzbe = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Narudzbe narudzba = new Narudzbe();
+                narudzba.setIdNarudzbe(rs.getInt("idNarudzbe"));
+                narudzba.setNarudzba(rs.getString("narudzba"));
+                narudzba.setVrijemeNarucivanja(rs.getString("vrijemeNarucivanja"));
+                narudzba.setIdRestorana(rs.getInt("idRestorana"));
+                narudzba.setIdDostavljaca(rs.getInt("idDostavljaca"));
+                rs.close();
+                return narudzba;
+            }
+            else{
+                return null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
