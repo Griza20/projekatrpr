@@ -17,4 +17,8 @@ public class Restorani {
     public void setIdRestorana(int idRestorana) {
         this.idRestorana = idRestorana;
     }
+
+    public String getNaziv() {
+        return naziv;
+    }
 }
