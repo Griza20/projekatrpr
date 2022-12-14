@@ -175,8 +175,30 @@ public class RestoraniDaoSQLImpl implements RestoraniDao{
         return restorani;
     }
 
+    /**
+     * Lists all restaurants from table Restorani in database that are nearby
+     * @param lokacija location for searching
+     * @return List of all restaurants that are close to each other
+     */
     @Override
     public List<Restorani> searchByLocation(String lokacija) {
-        return null;
+        String query = "SELECT * FROM Restorani";
+        List<Restorani> restorani = new ArrayList<Restorani>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Restorani restoran = new Restorani();
+                restoran.setIdRestorana(rs.getInt("idRestorana"));
+                restoran.setNaziv(rs.getString("naziv"));
+                restoran.setVlasnik(rs.getString("vlasnik"));
+                restoran.setLokacija(rs.getString("lokacija"));
+                if(restoran.getLokacija().equals(lokacija)) restorani.add(restoran);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return restorani;
     }
 }
