@@ -17,4 +17,8 @@ public class Dostavljaci {
     public int getIdDostavljaca() {
         return idDostavljaca;
     }
+
+    public void setIdDostavljaca(int idDostavljaca) {
+        this.idDostavljaca = idDostavljaca;
+    }
 }
