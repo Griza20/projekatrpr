@@ -45,4 +45,8 @@ public class Narudzbe {
     public String getVrijemeNarucivanja() {
         return vrijemeNarucivanja;
     }
+
+    public void setVrijemeNarucivanja(String vrijemeNarucivanja) {
+        this.vrijemeNarucivanja = vrijemeNarucivanja;
+    }
 }
