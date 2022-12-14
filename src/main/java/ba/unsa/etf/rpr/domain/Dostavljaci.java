@@ -45,4 +45,8 @@ public class Dostavljaci {
     public void setBroj(String broj) {
         this.broj = broj;
     }
+
+    public Date getDatumRodjenja() {
+        return datumRodjenja;
+    }
 }
