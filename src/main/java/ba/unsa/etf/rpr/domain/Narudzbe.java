@@ -57,4 +57,9 @@ public class Narudzbe {
         Narudzbe narudzbe = (Narudzbe) o;
         return idNarudzbe == narudzbe.idNarudzbe;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idNarudzbe, idRestorana, idDostavljaca, narudzba, vrijemeNarucivanja);
+    }
 }
