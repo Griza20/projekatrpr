@@ -29,8 +29,35 @@ public class DostavljaciDaoSQLImpl implements DostavljaciDao{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Gets a deliverer from database with given id
+     * @param id primary key of entity
+     * @return All information about deliverer with given id
+     */
     @Override
     public Dostavljaci getById(int id) {
+        String query = "SELECT * FROM Dostavljaci WHERE idDostavljaca = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Dostavljaci dostavljac = new Dostavljaci();
+                dostavljac.setIdDostavljaca(rs.getInt("idDostavljaca"));
+                dostavljac.setIme(rs.getString("ime"));
+                dostavljac.setPrezime(rs.getString("prezime"));
+                dostavljac.setBroj(rs.getString("broj"));
+                dostavljac.setDatumRodjenja(rs.getDate("datumRodjenja"));
+                rs.close();
+                return dostavljac;
+            }
+            else{
+                return null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
