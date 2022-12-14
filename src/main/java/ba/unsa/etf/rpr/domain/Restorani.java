@@ -41,4 +41,12 @@ public class Restorani {
     public void setLokacija(String lokacija) {
         this.lokacija = lokacija;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restorani restorani = (Restorani) o;
+        return restorani.idRestorana==idRestorana;
+    }
 }
