@@ -33,4 +33,8 @@ public class Restorani {
     public void setVlasnik(String vlasnik) {
         this.vlasnik = vlasnik;
     }
+
+    public String getLokacija() {
+        return lokacija;
+    }
 }
