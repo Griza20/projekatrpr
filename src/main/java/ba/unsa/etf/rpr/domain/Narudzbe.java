@@ -33,4 +33,12 @@ public class Narudzbe {
     public void setIdDostavljaca(int idDostavljaca) {
         this.idDostavljaca = idDostavljaca;
     }
+
+    public String getNarudzba() {
+        return narudzba;
+    }
+
+    public void setNarudzba(String narudzba) {
+        this.narudzba = narudzba;
+    }
 }
