@@ -106,9 +106,20 @@ public class NarudzbeDaoSQLImpl implements NarudzbeDao{
         return null;
     }
 
+    /**
+     * Deleting an order from database with given id
+     * @param id primary key of entity
+     */
     @Override
     public void delete(int id) {
-
+        String insert = "DELETE FROM Narudzbe WHERE idNarudzbe = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
