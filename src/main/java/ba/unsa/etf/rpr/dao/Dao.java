@@ -28,4 +28,10 @@ public interface Dao<Tip> {
      * @return updated item
      */
     Tip update(Tip item);
+
+    /**
+     * Deletes entity from database with given id
+     * @param id primary key of entity
+     */
+    void delete(int id);
 }
