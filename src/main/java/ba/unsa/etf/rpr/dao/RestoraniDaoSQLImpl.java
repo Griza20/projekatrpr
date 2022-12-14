@@ -28,8 +28,34 @@ public class RestoraniDaoSQLImpl implements RestoraniDao{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Gets an restaurant from database with given id
+     * @param id primary key of entity
+     * @return All information about a restaurant with given id
+     */
     @Override
     public Restorani getById(int id) {
+        String query = "SELECT * FROM Restorani WHERE idRestorana = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Restorani restoran = new Restorani();
+                restoran.setIdRestorana(rs.getInt("idRestorana"));
+                restoran.setNaziv(rs.getString("naziv"));
+                restoran.setVlasnik(rs.getString("vlasnik"));
+                restoran.setLokacija(rs.getString("lokacija"));
+                rs.close();
+                return restoran;
+            }
+            else{
+                return null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
