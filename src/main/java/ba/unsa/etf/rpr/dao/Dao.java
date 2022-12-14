@@ -34,4 +34,10 @@ public interface Dao<Tip> {
      * @param id primary key of entity
      */
     void delete(int id);
+
+    /**
+     * Shows list of all entities from database
+     * @return list of all entities
+     */
+    List<Tip> getAll();
 }
