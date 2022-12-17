@@ -49,4 +49,58 @@ public class LoginController {
             }
         });
     }
+
+    public void loginClick(ActionEvent actionEvent) {
+        //Konektovanje na bazu
+        try{
+            FileReader reader = new FileReader("baza.properties");
+            Properties property = new Properties();
+            property.load(reader);
+            this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPR Baza",property.getProperty("username"),property.getProperty("password"));
+        }catch(Exception e){
+            System.out.println("Nije uspostavljena konekcija sa bazom.");
+            e.printStackTrace();
+        }
+        String query = "SELECT username, password FROM Korisnici";
+        List<String> results = new ArrayList<String>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            boolean logintest = false;
+            String us = userField.getText(), pass = pwField.getText();
+            while (rs.next()){
+                String user = rs.getString("username");
+                String pw = rs.getString("password");
+                if(user.equals(us) && pw.equals(pass)){
+                    logintest = true;
+                    break;
+                }
+            }
+            rs.close();
+            if(logintest){
+                try {
+                    final Stage loginStage = (Stage) loginScreen.getScene().getWindow();
+                    Stage myStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home-layout.fxml"));
+                    loader.load();
+                    HomeController homeController = loader.getController();
+                    myStage.setTitle("Home Screen");
+                    myStage.setScene(new Scene((Parent) loader.getRoot(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                    myStage.setResizable(false);
+                    myStage.show();
+                    loginStage.hide();
+                    myStage.setOnHiding(event -> {
+                        loginStage.show();
+                    });
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else{
+                System.out.println("Pogresan login");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
