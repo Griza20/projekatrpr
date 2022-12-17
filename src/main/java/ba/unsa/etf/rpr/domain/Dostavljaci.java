@@ -8,18 +8,19 @@ import java.util.Objects;
  * Bean for dostavljaci
  * @author Amar Grizovic
  */
-public class Dostavljaci {
+public class Dostavljaci implements Idable{
     private int idDostavljaca;
     private String ime, prezime, broj;
     private Date datumRodjenja;
 
-
-    public int getIdDostavljaca() {
+    @Override
+    public int getId() {
         return idDostavljaca;
     }
 
-    public void setIdDostavljaca(int idDostavljaca) {
-        this.idDostavljaca = idDostavljaca;
+    @Override
+    public void setId(int id) {
+        this.idDostavljaca = id;
     }
 
     public String getIme() {
