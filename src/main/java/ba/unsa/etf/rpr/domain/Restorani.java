@@ -6,16 +6,18 @@ import java.util.Objects;
  * Bean for restorani
  * @author Amar Grizovic
  */
-public class Restorani {
+public class Restorani implements Idable{
     private int idRestorana;
     private String naziv, vlasnik, lokacija;
 
-    public int getIdRestorana() {
+    @Override
+    public int getId() {
         return idRestorana;
     }
 
-    public void setIdRestorana(int idRestorana) {
-        this.idRestorana = idRestorana;
+    @Override
+    public void setId(int id) {
+        this.idRestorana = id;
     }
 
     public String getNaziv() {
