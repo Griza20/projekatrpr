@@ -5,9 +5,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.io.FileReader;
 import java.sql.*;
-import java.util.AbstractMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Abstract class that implements core DAO CRUD methods for every entity
@@ -112,6 +110,23 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             PreparedStatement stmt = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
             stmt.executeUpdate();
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage(), e);
+        }
+    }
+
+    public List<T> getAll() throws OrderException {
+        String query = "SELECT * FROM "+ imeTabele;
+        List<T> results = new ArrayList<T>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                T object = row2object(rs);
+                results.add(object);
+            }
+            rs.close();
+            return results;
         }catch (SQLException e){
             throw new OrderException(e.getMessage(), e);
         }
