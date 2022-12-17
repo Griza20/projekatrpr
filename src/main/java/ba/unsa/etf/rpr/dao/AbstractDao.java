@@ -4,9 +4,7 @@ import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 
@@ -33,4 +31,22 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public abstract T row2object(ResultSet rs) throws OrderException;
 
     public abstract Map<String, Object> object2row(T object);
+
+    public T getById(int id) throws OrderException{
+        String query = "SELECT * FROM "+this.imeTabele+" WHERE id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                T result = row2object(rs);
+                rs.close();
+                return result;
+            } else {
+                throw new OrderException("Object not found");
+            }
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage(), e);
+        }
+    }
 }
