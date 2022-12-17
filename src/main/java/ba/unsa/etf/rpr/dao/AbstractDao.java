@@ -1,10 +1,12 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Idable;
+import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -27,4 +29,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             e.printStackTrace();
         }
     }
+    public abstract T row2object(ResultSet rs) throws OrderException;
+
 }
