@@ -51,6 +51,35 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
+    public T add(T item) throws OrderException{
+        Map<String, Object> row = object2row(item);
+        Map.Entry<String, String> columns = prepareInsertParts(row);
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("INSERT INTO ").append(imeTabele);
+        builder.append(" (").append(columns.getKey()).append(") ");
+        builder.append("VALUES (").append(columns.getValue()).append(")");
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
+            int counter = 1;
+            for (Map.Entry<String, Object> entry: row.entrySet()) {
+                if (entry.getKey().equals("id")) continue;
+                stmt.setObject(counter, entry.getValue());
+                counter++;
+            }
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+
+            return item;
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage(), e);
+        }
+    }
+
     /**
      * Accepts KV storage of column names and return CSV of columns and question marks for insert statement
      * Example: (id, name, date) ?,?,?
@@ -84,7 +113,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip update of id due where clause
+            if (entry.getKey().equals("id")) continue;
             columns.append(entry.getKey()).append("= ?");
             if (row.size() != counter) {
                 columns.append(",");
