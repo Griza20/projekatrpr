@@ -80,6 +80,32 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
+    public T update(T item) throws OrderException{
+        Map<String, Object> row = object2row(item);
+        String updateColumns = prepareUpdateParts(row);
+        StringBuilder builder = new StringBuilder();
+        builder.append("UPDATE ")
+                .append(imeTabele)
+                .append(" SET ")
+                .append(updateColumns)
+                .append(" WHERE id = ?");
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(builder.toString());
+            int counter = 1;
+            for (Map.Entry<String, Object> entry: row.entrySet()) {
+                if (entry.getKey().equals("id")) continue;
+                stmt.setObject(counter, entry.getValue());
+                counter++;
+            }
+            stmt.setObject(counter+1, item.getId());
+            stmt.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            throw new OrderException(e.getMessage(), e);
+        }
+    }
+
     /**
      * Accepts KV storage of column names and return CSV of columns and question marks for insert statement
      * Example: (id, name, date) ?,?,?
