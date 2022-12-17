@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -31,4 +32,5 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
     public abstract T row2object(ResultSet rs) throws OrderException;
 
+    public abstract Map<String, Object> object2row(T object);
 }
