@@ -62,6 +62,12 @@ public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements D
 
     @Override
     public Map<String, Object> object2row(Dostavljaci object) {
-        return null;
+        Map<String, Object> row = new TreeMap<String, Object>();
+        row.put("idDostavljaca", object.getId());
+        row.put("ime", object.getIme());
+        row.put("prezime", object.getPrezime());
+        row.put("broj", object.getBroj());
+        row.put("datumRodjenja", object.getDatumRodjenja());
+        return row;
     }
 }
