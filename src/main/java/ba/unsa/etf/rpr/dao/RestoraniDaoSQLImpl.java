@@ -75,7 +75,16 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
 
     @Override
     public Restorani row2object(ResultSet rs) throws OrderException {
-        return null;
+        try {
+            Restorani cat = new Restorani();
+            cat.setId(rs.getInt("idRestorana"));
+            cat.setNaziv(rs.getString("naziv"));
+            cat.setVlasnik(rs.getString("vlasnik"));
+            cat.setLokacija(rs.getString("lokacija"));
+            return cat;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage(), e);
+        }
     }
 
     @Override
