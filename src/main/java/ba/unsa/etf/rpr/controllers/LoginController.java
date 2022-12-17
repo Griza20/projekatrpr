@@ -103,4 +103,24 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    public void registerClick(ActionEvent actionEvent) {
+        try {
+            final Stage loginStage = (Stage) loginScreen.getScene().getWindow();
+            Stage myStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register-layout.fxml"));
+            loader.load();
+            RegisterController registerController = loader.getController();
+            myStage.setTitle("Register Screen");
+            myStage.setScene(new Scene((Parent) loader.getRoot(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            myStage.setResizable(false);
+            myStage.show();
+            loginStage.hide();
+            myStage.setOnHiding(event -> {
+                loginStage.show();
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
