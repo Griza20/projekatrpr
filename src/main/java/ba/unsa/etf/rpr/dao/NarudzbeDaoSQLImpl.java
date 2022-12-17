@@ -34,7 +34,13 @@ public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements Narudzb
 
     @Override
     public Map<String, Object> object2row(Narudzbe object) {
-        return null;
+        Map<String, Object> row = new TreeMap<String, Object>();
+        row.put("idNarudzbe", object.getId());
+        row.put("narudzba", object.getNarudzba());
+        row.put("vrijemeNarucivanja", object.getVrijemeNarucivanja());
+        row.put("idRestorana", object.getIdRestorana());
+        row.put("idDostavljaca", object.getIdDostavljaca());
+        return row;
     }
 
     /**
