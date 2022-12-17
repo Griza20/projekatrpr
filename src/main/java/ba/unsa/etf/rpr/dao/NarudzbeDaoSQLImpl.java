@@ -12,7 +12,6 @@ import java.util.*;
  * @author Amar Grizovic
  */
 public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements NarudzbeDao{
-    private Connection connection;
     public NarudzbeDaoSQLImpl(){
         super("Narudzbe");
     }
@@ -52,7 +51,7 @@ public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements Narudzb
         String query = "SELECT * FROM Narudzbe";
         List<Narudzbe> narudzbe = new ArrayList<Narudzbe>();
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
+            PreparedStatement stmt = getConncetion().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Narudzbe narudzba = new Narudzbe();
