@@ -6,10 +6,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.io.FileReader;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * SQL Implementation class for Restorani table in database
@@ -89,6 +86,11 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
 
     @Override
     public Map<String, Object> object2row(Restorani object) {
-        return null;
+        Map<String, Object> row = new TreeMap<String, Object>();
+        row.put("idRestorana", object.getId());
+        row.put("naziv", object.getNaziv());
+        row.put("vlasnik", object.getVlasnik());
+        row.put("lokacija", object.getLokacija());
+        return row;
     }
 }
