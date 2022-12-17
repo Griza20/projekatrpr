@@ -19,7 +19,17 @@ public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements Narudzb
 
     @Override
     public Narudzbe row2object(ResultSet rs) throws OrderException {
-        return null;
+        try {
+            Narudzbe cat = new Narudzbe();
+            cat.setId(rs.getInt("idNarudzbe"));
+            cat.setNarudzba(rs.getString("narudzba"));
+            cat.setVrijemeNarucivanja(rs.getString("vrijemeNarucivanja"));
+            cat.setIdRestorana(rs.getInt("idRestorana"));
+            cat.setIdDostavljaca(rs.getInt("idDostavljaca"));
+            return cat;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage(), e);
+        }
     }
 
     @Override
