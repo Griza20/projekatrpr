@@ -6,16 +6,18 @@ import java.util.Objects;
  * Bean for narudzbe
  * @author Amar Grizovic
  */
-public class Narudzbe {
+public class Narudzbe implements Idable{
     private int idNarudzbe, idRestorana, idDostavljaca;
     private String narudzba, vrijemeNarucivanja;
 
-    public int getIdNarudzbe() {
+    @Override
+    public int getId() {
         return idNarudzbe;
     }
 
-    public void setIdNarudzbe(int idNarudzbe) {
-        this.idNarudzbe = idNarudzbe;
+    @Override
+    public void setId(int id) {
+        this.idNarudzbe = id;
     }
 
     public int getIdRestorana() {
