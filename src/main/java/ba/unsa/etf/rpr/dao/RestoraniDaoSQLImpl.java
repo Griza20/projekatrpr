@@ -20,25 +20,8 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
      * @return List of all retaurants with same manager
      */
     @Override
-    public List<Restorani> searchByManagerName(String vlasnik) {
-        String query = "SELECT * FROM Restorani";
-        List<Restorani> restorani = new ArrayList<Restorani>();
-        try{
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
-                Restorani restoran = new Restorani();
-                restoran.setId(rs.getInt("idRestorana"));
-                restoran.setNaziv(rs.getString("naziv"));
-                restoran.setVlasnik(rs.getString("vlasnik"));
-                restoran.setLokacija(rs.getString("lokacija"));
-                if(restoran.getVlasnik().equals(vlasnik)) restorani.add(restoran);
-            }
-            rs.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return restorani;
+    public List<Restorani> searchByManagerName(String vlasnik) throws OrderException {
+        return executeQuery("SELECT * FROM Restorani WHERE vlasnik = ?", new Object[]{vlasnik});
     }
 
     /**
@@ -48,7 +31,7 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
      */
     @Override
     public List<Restorani> searchByLocation(String lokacija) throws OrderException {
-        return executeQuery("SELECT * FROM Restorani WHERE vlasnik = ?", new Object[]{lokacija});
+        return executeQuery("SELECT * FROM Restorani WHERE lokacija = ?", new Object[]{lokacija});
     }
 
     @Override
