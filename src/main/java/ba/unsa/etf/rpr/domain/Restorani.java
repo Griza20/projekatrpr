@@ -59,11 +59,6 @@ public class Restorani implements Idable{
 
     @Override
     public String toString() {
-        return "Restorani{" +
-                "idRestorana=" + idRestorana +
-                ", naziv='" + naziv + '\'' +
-                ", vlasnik='" + vlasnik + '\'' +
-                ", lokacija='" + lokacija + '\'' +
-                '}';
+        return naziv;
     }
 }
