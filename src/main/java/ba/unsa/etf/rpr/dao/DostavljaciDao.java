@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Dostavljaci;
+import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.util.Date;
 import java.util.List;
@@ -15,5 +16,5 @@ public interface DostavljaciDao extends Dao<Dostavljaci>{
      * @param datumRodjenja date of birthday
      * @return List of all deliverers that have birthday on same day
      */
-    List<Dostavljaci> searchByBirthDate(Date datumRodjenja);
+    List<Dostavljaci> searchByBirthDate(Date datumRodjenja) throws OrderException;
 }
