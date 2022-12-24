@@ -22,26 +22,8 @@ public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements D
      * @return List of all deliverers who have birthday on the same day
      */
     @Override
-    public List<Dostavljaci> searchByBirthDate(Date datumRodjenja) {
-        String query = "SELECT * FROM Dostavljaci WHERE datumRodjenja = ?";
-        List<Dostavljaci> dostavljaci = new ArrayList<Dostavljaci>();
-        try{
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){ // result set is iterator.
-                Dostavljaci dostavljac = new Dostavljaci();
-                dostavljac.setId(rs.getInt("idDostavljaca"));
-                dostavljac.setIme(rs.getString("ime"));
-                dostavljac.setPrezime(rs.getString("prezime"));
-                dostavljac.setBroj(rs.getString("broj"));
-                dostavljac.setDatumRodjenja(rs.getDate("datumRodjenja"));
-                if(dostavljac.getDatumRodjenja().getDay()==datumRodjenja.getDay() && dostavljac.getDatumRodjenja().getMonth()==datumRodjenja.getMonth()) dostavljaci.add(dostavljac);
-            }
-            rs.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return dostavljaci;
+    public List<Dostavljaci> searchByBirthDate(Date datumRodjenja) throws OrderException {
+        return executeQuery("SELECT * FROM Dostavljaci WHERE datumRodjenja = ?", new Object[]{datumRodjenja});
     }
 
     @Override
