@@ -14,6 +14,7 @@ import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     private Connection connection;
     private String imeTabele;
+    private String idIme;
 
     public Connection getConnection(){
         return this.connection;
@@ -22,6 +23,13 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public AbstractDao(String imeTabele){
         try{
             this.imeTabele=imeTabele;
+            this.idIme = "id" + this.imeTabele.substring(0,this.imeTabele.length()-1);
+            if(this.imeTabele.equals("Narudzbe")){
+                idIme = idIme + "e" + " = ?";
+            }
+            else{
+                idIme = idIme + "a" + " = ?";
+            }
             FileReader reader = new FileReader("baza.properties");
             Properties property = new Properties();
             property.load(reader);
@@ -47,13 +55,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public abstract Map<String, Object> object2row(T object);
 
     public T getById(int id) throws OrderException{
-        String query = "SELECT * FROM "+this.imeTabele+" WHERE id" + this.imeTabele.substring(0,this.imeTabele.length()-1);
-        if(this.imeTabele.equals("Narudzbe")){
-            query = query + "e" + " = ?";
-        }
-        else{
-            query = query + "a" + " = ?";
-        }
+        String query = "SELECT * FROM "+this.imeTabele+" WHERE " + this.idIme + " = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -83,7 +85,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             PreparedStatement stmt = this.connection.prepareStatement(builder.toString(), Statement.RETURN_GENERATED_KEYS);
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
-                if (entry.getKey().equals("id")) continue;
+                if (entry.getKey().equals(idIme)) continue;
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
@@ -107,7 +109,9 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
                 .append(imeTabele)
                 .append(" SET ")
                 .append(updateColumns)
-                .append(" WHERE id = ?");
+                .append(" WHERE ")
+                .append(idIme)
+                .append(" = ?");
 
         try{
             PreparedStatement stmt = this.connection.prepareStatement(builder.toString());
@@ -126,7 +130,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     public void delete(int id) throws OrderException {
-        String sql = "DELETE FROM "+imeTabele+" WHERE id = ?";
+        String sql = "DELETE FROM "+imeTabele+" WHERE " + idIme + " = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
@@ -164,7 +168,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue;
+            if (entry.getKey().equals(idIme)) continue;
             columns.append(entry.getKey());
             questions.append("?");
             if (row.size() != counter) {
@@ -186,7 +190,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         int counter = 0;
         for (Map.Entry<String, Object> entry: row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue;
+            if (entry.getKey().equals(idIme)) continue;
             columns.append(entry.getKey()).append("= ?");
             if (row.size() != counter) {
                 columns.append(",");
