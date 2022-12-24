@@ -1,10 +1,8 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Narudzbe;
 import ba.unsa.etf.rpr.domain.Restorani;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
-import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 
@@ -26,7 +24,7 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
         String query = "SELECT * FROM Restorani";
         List<Restorani> restorani = new ArrayList<Restorani>();
         try{
-            PreparedStatement stmt = getConncetion().prepareStatement(query);
+            PreparedStatement stmt = getConnection().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Restorani restoran = new Restorani();
@@ -49,25 +47,8 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
      * @return List of all restaurants that are close to each other
      */
     @Override
-    public List<Restorani> searchByLocation(String lokacija) {
-        String query = "SELECT * FROM Restorani";
-        List<Restorani> restorani = new ArrayList<Restorani>();
-        try{
-            PreparedStatement stmt = getConncetion().prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
-                Restorani restoran = new Restorani();
-                restoran.setId(rs.getInt("idRestorana"));
-                restoran.setNaziv(rs.getString("naziv"));
-                restoran.setVlasnik(rs.getString("vlasnik"));
-                restoran.setLokacija(rs.getString("lokacija"));
-                if(restoran.getLokacija().equals(lokacija)) restorani.add(restoran);
-            }
-            rs.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return restorani;
+    public List<Restorani> searchByLocation(String lokacija) throws OrderException {
+        return executeQuery("SELECT * FROM Restorani WHERE vlasnik = ?", new Object[]{lokacija});
     }
 
     @Override

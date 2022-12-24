@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Narudzbe;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
-import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 
@@ -51,7 +50,7 @@ public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements Narudzb
         String query = "SELECT * FROM Narudzbe";
         List<Narudzbe> narudzbe = new ArrayList<Narudzbe>();
         try{
-            PreparedStatement stmt = getConncetion().prepareStatement(query);
+            PreparedStatement stmt = getConnection().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Narudzbe narudzba = new Narudzbe();

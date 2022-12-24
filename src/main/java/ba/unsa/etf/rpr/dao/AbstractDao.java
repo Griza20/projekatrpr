@@ -15,7 +15,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     private Connection connection;
     private String imeTabele;
 
-    public Connection getConncetion(){
+    public Connection getConnection(){
         return this.connection;
     }
 
@@ -36,7 +36,13 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public abstract Map<String, Object> object2row(T object);
 
     public T getById(int id) throws OrderException{
-        String query = "SELECT * FROM "+this.imeTabele+" WHERE id = ?";
+        String query = "SELECT * FROM "+this.imeTabele+" WHERE id" + this.imeTabele.substring(0,this.imeTabele.length()-1);
+        if(this.imeTabele.equals("Narudzbe")){
+            query = query + "e" + " = ?";
+        }
+        else{
+            query = query + "a" + " = ?";
+        }
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -176,5 +182,30 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             }
         }
         return columns.toString();
+    }
+    /**
+     * Utility method for executing any kind of query
+     * @param query - SQL query
+     * @param params - params for query
+     * @return List of objects from database
+     * @throws OrderException in case of error with db
+     */
+    public List<T> executeQuery(String query, Object[] params) throws OrderException{
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            if (params != null){
+                for(int i = 1; i <= params.length; i++){
+                    stmt.setObject(i, params[i-1]);
+                }
+            }
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<T> resultList = new ArrayList<>();
+            while (rs.next()) {
+                resultList.add(row2object(rs));
+            }
+            return resultList;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage(), e);
+        }
     }
 }

@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Dostavljaci;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
-import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
@@ -27,7 +26,7 @@ public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements D
         String query = "SELECT * FROM Dostavljaci WHERE datumRodjenja = ?";
         List<Dostavljaci> dostavljaci = new ArrayList<Dostavljaci>();
         try{
-            PreparedStatement stmt = getConncetion().prepareStatement(query);
+            PreparedStatement stmt = getConnection().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // result set is iterator.
                 Dostavljaci dostavljac = new Dostavljaci();
