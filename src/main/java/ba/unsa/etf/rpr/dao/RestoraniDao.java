@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Restorani;
+import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.util.List;
 
@@ -14,12 +15,12 @@ public interface RestoraniDao extends Dao<Restorani> {
      * @param vlasnik first and last name of manager
      * @return List of all restaurants where given parameter is a manager
      */
-    List<Restorani> searchByManagerName(String vlasnik);
+    List<Restorani> searchByManagerName(String vlasnik) throws OrderException;
 
     /**
      * Searches for all restaurants that are nearby
      * @param lokacija location for searching
      * @return List of all restaurants that are nearby
      */
-    List<Restorani> searchByLocation(String lokacija);
+    List<Restorani> searchByLocation(String lokacija) throws OrderException;
 }
