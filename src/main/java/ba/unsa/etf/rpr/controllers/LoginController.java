@@ -88,10 +88,8 @@ public class LoginController {
                     myStage.setScene(new Scene((Parent) loader.getRoot(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                     myStage.setResizable(false);
                     myStage.show();
-                    loginStage.hide();
-                    myStage.setOnHiding(event -> {
-                        loginStage.show();
-                    });
+                    Stage scenaZaZatvoriti = (Stage) loginButton.getScene().getWindow();
+                    scenaZaZatvoriti.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
