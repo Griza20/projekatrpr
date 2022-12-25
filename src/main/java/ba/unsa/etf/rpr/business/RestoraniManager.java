@@ -34,4 +34,8 @@ public class RestoraniManager {
     public List<Restorani> searchByManagerName(String vlasnik) throws OrderException {
         return DaoFactory.restoraniDao().searchByManagerName(vlasnik);
     }
+
+    public List<Restorani> searchByLocation(String lokacija) throws OrderException {
+        return DaoFactory.restoraniDao().searchByLocation(lokacija);
+    }
 }
