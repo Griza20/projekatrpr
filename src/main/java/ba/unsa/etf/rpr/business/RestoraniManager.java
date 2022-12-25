@@ -30,4 +30,8 @@ public class RestoraniManager {
     public List<Restorani> getAll() throws OrderException {
         return DaoFactory.restoraniDao().getAll();
     }
+
+    public List<Restorani> searchByManagerName(String vlasnik) throws OrderException {
+        return DaoFactory.restoraniDao().searchByManagerName(vlasnik);
+    }
 }
