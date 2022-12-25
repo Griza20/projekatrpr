@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Dostavljaci;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,5 +35,9 @@ public class DostavljaciManager {
 
     public List<Dostavljaci> getAll() throws OrderException{
         return DaoFactory.dostavljaciDao().getAll();
+    }
+
+    public List<Dostavljaci> searchByBirthDate(Date datumRodjenja) throws OrderException {
+        return DaoFactory.dostavljaciDao().searchByBirthDate(datumRodjenja);
     }
 }
