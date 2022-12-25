@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Dostavljaci;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.util.List;
+
 /**
  * Business Logic Layer for management of Dostavljaci
  * @author Amar Grizovic
@@ -28,5 +30,9 @@ public class DostavljaciManager {
 
     public Dostavljaci update(Dostavljaci d) throws OrderException{
         return DaoFactory.dostavljaciDao().update(d);
+    }
+
+    public List<Dostavljaci> getAll() throws OrderException{
+        return DaoFactory.dostavljaciDao().getAll();
     }
 }
