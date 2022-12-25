@@ -20,4 +20,8 @@ public class NarudzbeManager {
     public void update(Narudzbe n) throws OrderException{
         DaoFactory.narudzbeDao().update(n);
     }
+
+    public void delete(int idNarudzbe) throws OrderException{
+        DaoFactory.narudzbeDao().delete(idNarudzbe);
+    }
 }
