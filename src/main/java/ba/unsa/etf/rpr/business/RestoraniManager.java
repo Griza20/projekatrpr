@@ -17,5 +17,7 @@ public class RestoraniManager {
         return DaoFactory.restoraniDao().add(r);
     }
 
-
+    public void update(Restorani r) throws OrderException{
+        DaoFactory.restoraniDao().update(r);
+    }
 }
