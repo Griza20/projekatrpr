@@ -12,4 +12,8 @@ public class NarudzbeManager {
     public Narudzbe getById(int idNarudzbe) throws OrderException {
         return DaoFactory.narudzbeDao().getById(idNarudzbe);
     }
+
+    public Narudzbe add(Narudzbe n) throws OrderException{
+        return DaoFactory.narudzbeDao().add(n);
+    }
 }
