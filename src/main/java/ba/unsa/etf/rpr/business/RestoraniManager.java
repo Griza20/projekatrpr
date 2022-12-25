@@ -12,4 +12,10 @@ public class RestoraniManager {
     public Restorani getById(int idRestorana) throws OrderException {
         return DaoFactory.restoraniDao().getById(idRestorana);
     }
+
+    public Restorani add(Restorani r) throws OrderException{
+        return DaoFactory.restoraniDao().add(r);
+    }
+
+
 }
