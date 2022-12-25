@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Restorani;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.util.List;
+
 /**
  * Business Logic Layer for Restorani
  * @author Amar Grizovic
@@ -23,5 +25,9 @@ public class RestoraniManager {
 
     public void delete(int idRestorana) throws OrderException{
         DaoFactory.restoraniDao().delete(idRestorana);
+    }
+
+    public List<Restorani> getAll() throws OrderException {
+        return DaoFactory.restoraniDao().getAll();
     }
 }
