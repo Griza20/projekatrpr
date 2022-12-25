@@ -20,4 +20,8 @@ public class RestoraniManager {
     public void update(Restorani r) throws OrderException{
         DaoFactory.restoraniDao().update(r);
     }
+
+    public void delete(int idRestorana) throws OrderException{
+        DaoFactory.restoraniDao().delete(idRestorana);
+    }
 }
