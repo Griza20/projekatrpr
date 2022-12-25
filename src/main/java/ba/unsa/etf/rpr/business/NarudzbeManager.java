@@ -4,6 +4,12 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Narudzbe;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -29,5 +35,9 @@ public class NarudzbeManager {
 
     public List<Narudzbe> getAll() throws OrderException {
         return DaoFactory.narudzbeDao().getAll();
+    }
+
+    public List<Narudzbe> getByTimeOrdered() {
+        return DaoFactory.narudzbeDao().getByTimeOrdered();
     }
 }
