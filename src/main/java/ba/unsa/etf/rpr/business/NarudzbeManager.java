@@ -16,4 +16,8 @@ public class NarudzbeManager {
     public Narudzbe add(Narudzbe n) throws OrderException{
         return DaoFactory.narudzbeDao().add(n);
     }
+
+    public void update(Narudzbe n) throws OrderException{
+        DaoFactory.narudzbeDao().update(n);
+    }
 }
