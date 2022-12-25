@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Narudzbe;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.util.List;
+
 /**
  * Business logic layer for Narudzbe
  * @author Amar Grizovic
@@ -23,5 +25,9 @@ public class NarudzbeManager {
 
     public void delete(int idNarudzbe) throws OrderException{
         DaoFactory.narudzbeDao().delete(idNarudzbe);
+    }
+
+    public List<Narudzbe> getAll() throws OrderException {
+        return DaoFactory.narudzbeDao().getAll();
     }
 }
