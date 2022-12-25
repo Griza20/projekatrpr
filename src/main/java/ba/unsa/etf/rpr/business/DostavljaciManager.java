@@ -26,4 +26,7 @@ public class DostavljaciManager {
         }
     }
 
+    public Dostavljaci update(Dostavljaci d) throws OrderException{
+        return DaoFactory.dostavljaciDao().update(d);
+    }
 }
