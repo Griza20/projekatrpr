@@ -6,7 +6,7 @@ import java.util.Objects;
  * Bean class Jela
  * @author Amar Grizovic
  */
-public class Jela {
+public class Jela implements Idable {
     private int idJela, idRestorana, cijena;
     private String jelo;
 
@@ -17,11 +17,6 @@ public class Jela {
     public void setCijena(int cijena) {
         this.cijena = cijena;
     }
-
-    public int getIdJela() {
-        return idJela;
-    }
-
 
     public void setIdJela(int idJela) {
         this.idJela = idJela;
@@ -63,5 +58,15 @@ public class Jela {
                 ", idRestorana=" + idRestorana +
                 ", jelo='" + jelo + '\'' +
                 '}';
+    }
+
+    @Override
+    public int getId() {
+        return idJela;
+    }
+
+    @Override
+    public void setId(int id) {
+
     }
 }
