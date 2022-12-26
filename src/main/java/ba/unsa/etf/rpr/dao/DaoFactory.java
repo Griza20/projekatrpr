@@ -8,6 +8,7 @@ public class DaoFactory {
     private static final DostavljaciDao dostavljaciDao = new DostavljaciDaoSQLImpl();
     private static final RestoraniDao restoraniDao = new RestoraniDaoSQLImpl();
     private static final NarudzbeDao narudzbeDao = new NarudzbeDaoSQLImpl();
+    private static final JelaDao jelaDao = new JelaDaoSQLImpl();
 
     private DaoFactory(){
     }
@@ -24,4 +25,5 @@ public class DaoFactory {
         return narudzbeDao;
     }
 
+    public static JelaDao jelaDao() { return jelaDao; }
 }
