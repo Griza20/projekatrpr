@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.exceptions.OrderException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * SQL Implementation class for Jela table in database
@@ -33,6 +34,11 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
 
     @Override
     public Map<String, Object> object2row(Jela object) {
-        return null;
+        Map<String, Object> row = new TreeMap<String, Object>();
+        row.put("idJela", object.getId());
+        row.put("jelo", object.getJelo());
+        row.put("cijena", object.getCijena());
+        row.put("idRestorana", object.getIdRestorana());
+        return row;
     }
 }
