@@ -34,4 +34,8 @@ public class Jela {
     public String getJelo() {
         return jelo;
     }
+
+    public void setJelo(String jelo) {
+        this.jelo = jelo;
+    }
 }
