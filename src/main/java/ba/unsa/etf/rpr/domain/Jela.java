@@ -9,4 +9,7 @@ public class Jela {
     public int getCijena() {
         return cijena;
     }
+    public void setCijena(int cijena) {
+        this.cijena = cijena;
+    }
 }
