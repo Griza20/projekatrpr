@@ -22,4 +22,8 @@ public class Jela {
     public void setIdJela(int idJela) {
         this.idJela = idJela;
     }
+
+    public int getIdRestorana() {
+        return idRestorana;
+    }
 }
