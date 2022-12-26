@@ -38,4 +38,11 @@ public class Jela {
     public void setJelo(String jelo) {
         this.jelo = jelo;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Jela jela = (Jela) o;
+        return idJela == jela.idJela && idRestorana == jela.idRestorana && Objects.equals(jelo, jela.jelo);
+    }
 }
