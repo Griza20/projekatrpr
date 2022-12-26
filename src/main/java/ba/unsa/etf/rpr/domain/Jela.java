@@ -18,10 +18,6 @@ public class Jela implements Idable {
         this.cijena = cijena;
     }
 
-    public void setIdJela(int idJela) {
-        this.idJela = idJela;
-    }
-
     public int getIdRestorana() {
         return idRestorana;
     }
@@ -67,6 +63,6 @@ public class Jela implements Idable {
 
     @Override
     public void setId(int id) {
-
+        this.idJela = idJela;
     }
 }
