@@ -2,6 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * Bean class Jela
+ * @author Amar Grizovic
+ */
 public class Jela {
     private int idJela, idRestorana, cijena;
     private String jelo;
@@ -50,5 +54,14 @@ public class Jela {
     @Override
     public int hashCode() {
         return Objects.hash(idJela, idRestorana, jelo);
+    }
+
+    @Override
+    public String toString() {
+        return "Jela{" +
+                "idJela=" + idJela +
+                ", idRestorana=" + idRestorana +
+                ", jelo='" + jelo + '\'' +
+                '}';
     }
 }
