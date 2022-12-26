@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Jela;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
+import java.util.List;
+
 /**
  * Business Logic Layer for management of Jela
  * @author Amar Grizovic
@@ -28,5 +30,9 @@ public class JelaManager {
 
     public Jela update(Jela j) throws OrderException{
         return DaoFactory.jelaDao().update(j);
+    }
+
+    public List<Jela> getAll() throws OrderException{
+        return DaoFactory.jelaDao().getAll();
     }
 }
