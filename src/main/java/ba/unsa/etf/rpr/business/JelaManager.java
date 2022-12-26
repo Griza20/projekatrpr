@@ -25,4 +25,8 @@ public class JelaManager {
             throw e;
         }
     }
+
+    public Jela update(Jela j) throws OrderException{
+        return DaoFactory.jelaDao().update(j);
+    }
 }
