@@ -26,4 +26,8 @@ public class Jela {
     public int getIdRestorana() {
         return idRestorana;
     }
+
+    public void setIdRestorana(int idRestorana) {
+        this.idRestorana = idRestorana;
+    }
 }
