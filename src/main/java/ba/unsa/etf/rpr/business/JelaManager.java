@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr.business;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Jela;
 import ba.unsa.etf.rpr.exceptions.OrderException;
-
 import java.util.List;
 
 /**
@@ -34,5 +33,9 @@ public class JelaManager {
 
     public List<Jela> getAll() throws OrderException{
         return DaoFactory.jelaDao().getAll();
+    }
+
+    public List<Jela> getAllMealsFromRestaurant(int idRestorana) throws OrderException{
+        return DaoFactory.jelaDao().getAllMealsFromRestaurant(idRestorana);
     }
 }
