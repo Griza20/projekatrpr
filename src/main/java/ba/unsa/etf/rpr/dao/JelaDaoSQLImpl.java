@@ -1,9 +1,11 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Dostavljaci;
 import ba.unsa.etf.rpr.domain.Jela;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -17,7 +19,16 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
 
     @Override
     public Jela row2object(ResultSet rs) throws OrderException {
-        return null;
+        try {
+            Jela jela = new Jela();
+            jela.setId(rs.getInt("idJela"));
+            jela.setJelo(rs.getString("jelo"));
+            jela.setCijena(rs.getInt("cijena"));
+            jela.setIdRestorana(rs.getInt("idRestorana"));
+            return jela;
+        } catch (SQLException e) {
+            throw new OrderException(e.getMessage(), e);
+        }
     }
 
     @Override
