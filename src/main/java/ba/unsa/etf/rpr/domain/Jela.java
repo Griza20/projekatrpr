@@ -30,4 +30,8 @@ public class Jela {
     public void setIdRestorana(int idRestorana) {
         this.idRestorana = idRestorana;
     }
+
+    public String getJelo() {
+        return jelo;
+    }
 }
