@@ -1,11 +1,11 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Dostavljaci;
 import ba.unsa.etf.rpr.domain.Jela;
 import ba.unsa.etf.rpr.exceptions.OrderException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -40,5 +40,15 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
         row.put("cijena", object.getCijena());
         row.put("idRestorana", object.getIdRestorana());
         return row;
+    }
+
+    /**
+     * Gets all meals from a restaurant whose id is given as parameter
+     * @param idRestorana unique id of a restaurant
+     * @return List of all meals from a restaurant
+     */
+    @Override
+    public List<Jela> getAllMealsFromRestaurant(int idRestorana) throws OrderException {
+        return executeQuery("SELECT * FROM Jela WHERE idRestorana = ?",new Object[]{idRestorana});
     }
 }
