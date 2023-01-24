@@ -29,13 +29,13 @@ public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements D
     @Override
     public Dostavljaci row2object(ResultSet rs) throws OrderException {
         try {
-            Dostavljaci cat = new Dostavljaci();
-            cat.setId(rs.getInt("idDostavljaca"));
-            cat.setIme(rs.getString("ime"));
-            cat.setPrezime(rs.getString("prezime"));
-            cat.setBroj(rs.getString("broj"));
-            cat.setDatumRodjenja(rs.getDate("datumRodjenja"));
-            return cat;
+            Dostavljaci d = new Dostavljaci();
+            d.setId(rs.getInt("idDostavljaca"));
+            d.setIme(rs.getString("ime"));
+            d.setPrezime(rs.getString("prezime"));
+            d.setBroj(rs.getString("broj"));
+            d.setDatumRodjenja(rs.getDate("datumRodjenja"));
+            return d;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage(), e);
         }
