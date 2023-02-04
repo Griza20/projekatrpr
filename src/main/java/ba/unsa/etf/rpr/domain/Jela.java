@@ -15,6 +15,10 @@ public class Jela implements Idable {
         return opis;
     }
 
+    public void setOpis(String o){
+        opis = o;
+    }
+
     public int getCijena() {
         return cijena;
     }
