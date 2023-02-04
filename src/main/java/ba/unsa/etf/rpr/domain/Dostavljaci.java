@@ -66,6 +66,10 @@ public class Dostavljaci implements Idable{
         return this.visina;
     }
 
+    public void setSpol(char x){
+        spol = x;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
