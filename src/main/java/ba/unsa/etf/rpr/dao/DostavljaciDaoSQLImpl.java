@@ -35,6 +35,9 @@ public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements D
             d.setPrezime(rs.getString("prezime"));
             d.setBroj(rs.getString("broj"));
             d.setDatumRodjenja(rs.getDate("datumRodjenja"));
+            d.setSpol(rs.getString("spol"));
+            d.setVisina(rs.getInt("visina"));
+            d.setVozacka(rs.getBoolean("vozacka"));
             return d;
         } catch (SQLException e) {
             throw new OrderException(e.getMessage(), e);
@@ -49,6 +52,9 @@ public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements D
         row.put("prezime", object.getPrezime());
         row.put("broj", object.getBroj());
         row.put("datumRodjenja", object.getDatumRodjenja());
+        row.put("spol",object.getSpol());
+        row.put("visina",object.getVisina());
+        row.put("vozacka",object.getVozacka());
         return row;
     }
 }
