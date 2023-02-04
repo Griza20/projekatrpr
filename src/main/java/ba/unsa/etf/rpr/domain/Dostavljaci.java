@@ -10,10 +10,9 @@ import java.util.Objects;
  */
 public class Dostavljaci implements Idable{
     private int idDostavljaca;
-    private String ime, prezime, broj;
+    private String ime, prezime, broj, spol;
     private Date datumRodjenja;
     private int visina;
-    private char spol;
     private boolean vozacka;
 
     @Override
@@ -66,11 +65,11 @@ public class Dostavljaci implements Idable{
         return this.visina;
     }
 
-    public void setSpol(char x){
+    public void setSpol(String x){
         spol = x;
     }
 
-    public char getSpol(){
+    public String getSpol(){
         return spol;
     }
 
