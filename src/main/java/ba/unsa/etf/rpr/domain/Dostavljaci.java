@@ -62,6 +62,10 @@ public class Dostavljaci implements Idable{
         this.visina = visina;
     }
 
+    public int getVisina(){
+        return this.visina;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
