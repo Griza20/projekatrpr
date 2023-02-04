@@ -25,6 +25,7 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
             jela.setId(rs.getInt("idJela"));
             jela.setJelo(rs.getString("jelo"));
             jela.setCijena(rs.getInt("cijena"));
+            jela.setOpis(rs.getString("opis"));
             jela.setIdRestorana(rs.getInt("idRestorana"));
             return jela;
         } catch (SQLException e) {
@@ -38,6 +39,7 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
         row.put("idJela", object.getId());
         row.put("jelo", object.getJelo());
         row.put("cijena", object.getCijena());
+        row.put("opis",object.getOpis());
         row.put("idRestorana", object.getIdRestorana());
         return row;
     }
