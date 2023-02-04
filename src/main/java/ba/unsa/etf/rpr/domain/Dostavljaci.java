@@ -70,6 +70,10 @@ public class Dostavljaci implements Idable{
         spol = x;
     }
 
+    public char getSpol(){
+        return spol;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
