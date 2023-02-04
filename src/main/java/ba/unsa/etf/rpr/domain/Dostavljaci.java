@@ -12,6 +12,9 @@ public class Dostavljaci implements Idable{
     private int idDostavljaca;
     private String ime, prezime, broj;
     private Date datumRodjenja;
+    private int visina;
+    private char spol;
+    private boolean vozacka;
 
     @Override
     public int getId() {
@@ -55,6 +58,10 @@ public class Dostavljaci implements Idable{
         this.datumRodjenja = datumRodjenja;
     }
 
+    public void setVisina(int visina){
+        this.visina = visina;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,12 +77,6 @@ public class Dostavljaci implements Idable{
 
     @Override
     public String toString() {
-        return "Dostavljaci{" +
-                "idDostavljaca=" + idDostavljaca +
-                ", ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", broj='" + broj + '\'' +
-                ", datumRodjenja=" + datumRodjenja +
-                '}';
+        return ime + " " + prezime;
     }
 }
