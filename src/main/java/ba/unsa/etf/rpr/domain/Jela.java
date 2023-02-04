@@ -7,7 +7,8 @@ import java.util.Objects;
  * @author Amar Grizovic
  */
 public class Jela implements Idable {
-    private int idJela, idRestorana, cijena;
+    private int idJela, idRestorana;
+    private Double cijena;
     private String jelo;
     private String opis;
 
@@ -19,11 +20,11 @@ public class Jela implements Idable {
         opis = o;
     }
 
-    public int getCijena() {
+    public Double getCijena() {
         return cijena;
     }
 
-    public void setCijena(int cijena) {
+    public void setCijena(Double cijena) {
         this.cijena = cijena;
     }
 
