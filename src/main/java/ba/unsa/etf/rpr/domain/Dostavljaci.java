@@ -78,6 +78,10 @@ public class Dostavljaci implements Idable{
         vozacka = x;
     }
 
+    public boolean getVozacka(){
+        return vozacka;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
