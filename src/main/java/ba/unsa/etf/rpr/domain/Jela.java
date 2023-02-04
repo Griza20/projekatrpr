@@ -9,6 +9,11 @@ import java.util.Objects;
 public class Jela implements Idable {
     private int idJela, idRestorana, cijena;
     private String jelo;
+    private String opis;
+
+    public String getOpis(){
+        return opis;
+    }
 
     public int getCijena() {
         return cijena;
