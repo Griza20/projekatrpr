@@ -40,6 +40,36 @@ public class JelaManagerController {
 
     }
 
+    @FXML
+    void initialize() {
+        restoChoice.setItems(restorani);
+        restoChoice.getSelectionModel().selectedItemProperty().addListener((obs, oldRestoran, newRestoran) -> {
+            try {
+                jelaChoice.getItems().clear();
+                List<Jela> ljela = jelaManager.getAllMealsFromRestaurant(newRestoran.getId());
+                listaJela.addAll(ljela);
+                jelaChoice.setItems(listaJela);
+                jelaChoice.getSelectionModel().selectedItemProperty().addListener((o, oldJelo, newJelo) -> {
+                    if(oldJelo != null){
+                        jeloField.textProperty().unbindBidirectional(jeloModel.jelo);
+                        opisField.textProperty().unbindBidirectional(jeloModel.opis);
+                        cijenaField.getValueFactory().valueProperty().unbindBidirectional(jeloModel.cijena.asObject());
+                    }
+                    if(newJelo!=null) {
+                        jeloModel.fromJelo(newJelo);
+                        jeloField.textProperty().bindBidirectional(jeloModel.jelo);
+                        opisField.textProperty().bindBidirectional(jeloModel.opis);
+                        cijenaField.getValueFactory().valueProperty().bindBidirectional(jeloModel.cijena.asObject());
+                    }
+                });
+                jeloModel.restoId=newRestoran.getId();
+            } catch (OrderException e) {
+                System.out.println("Problem sa getAllMealsFromRestaurant metodom jelaManager");
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
     public class JeloModel{
         public Integer id, restoId;
         public SimpleStringProperty jelo = new SimpleStringProperty();
