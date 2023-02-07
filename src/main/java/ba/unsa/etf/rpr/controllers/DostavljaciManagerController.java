@@ -35,6 +35,24 @@ public class DostavljaciManagerController {
 
     }
 
+    @FXML
+    void initialize() {
+        choiceDostavljaci.setItems(dostavljaci);
+        choiceDostavljaci.getSelectionModel().selectedItemProperty().addListener((obs, oldDostavljac, newDostavljac) -> {
+            if(oldDostavljac != null) {
+                fldIme.textProperty().unbindBidirectional(dostavljacModel.ime);
+                fldPrezime.textProperty().unbindBidirectional(dostavljacModel.prezime);
+                fldBroj.textProperty().unbindBidirectional(dostavljacModel.broj);
+                datumPicker.valueProperty().unbindBidirectional(dostavljacModel.datumRodjenja);
+            }
+            dostavljacModel.fromDostavljac(newDostavljac);
+            fldIme.textProperty().bindBidirectional(dostavljacModel.ime);
+            fldPrezime.textProperty().bindBidirectional(dostavljacModel.prezime);
+            fldBroj.textProperty().bindBidirectional(dostavljacModel.broj);
+            datumPicker.valueProperty().bindBidirectional(dostavljacModel.datumRodjenja);
+        });
+    }
+
     public class DostavljacModel{
         public Integer id;
         public int visina;
