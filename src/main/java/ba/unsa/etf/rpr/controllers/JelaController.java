@@ -42,4 +42,20 @@ public class JelaController {
         nazivField.getStyleClass().removeAll("poljeNijeIspravno");
         opisField.getStyleClass().removeAll("poljeNijeIspravno");
     }
+
+    public void dodajClick(ActionEvent actionEvent) throws OrderException {
+        nazivField.getStyleClass().removeAll("poljeNijeIspravno");
+        opisField.getStyleClass().removeAll("poljeNijeIspravno");
+        if(this.validacija()){
+            Jela j = new Jela();
+            j.setJelo(nazivField.getText());
+            j.setOpis(opisField.getText());
+            j.setCijena(cijenaSpinner.getValue());
+            j.setIdRestorana(idResto);
+            jelaManager.add(j);
+            Node n = (Node) actionEvent.getSource();
+            Stage stage = (Stage) n.getScene().getWindow();
+            stage.close();
+        }
+    }
 }
