@@ -2,10 +2,16 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.NarudzbeManager;
 import ba.unsa.etf.rpr.domain.Jela;
+import ba.unsa.etf.rpr.domain.Narudzbe;
 import ba.unsa.etf.rpr.domain.Restorani;
+import ba.unsa.etf.rpr.exceptions.OrderException;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.time.LocalTime;
 
 public class NarudzbeController {
     public Button izlazButton;
@@ -51,5 +57,13 @@ public class NarudzbeController {
         this.cijena=j.getCijena();
         labela = new SimpleStringProperty(cijena.toString()+ "0 KM");
         narudzbeManager = new NarudzbeManager();
+    }
+
+    public SimpleStringProperty labelaProperty(){
+        return labela;
+    }
+
+    public String getLabela(){
+        return labela.get();
     }
 }
