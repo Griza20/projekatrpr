@@ -123,4 +123,25 @@ public class HomeController {
     public void aboutClick(ActionEvent actionEvent){
         openDialog("About Window", "/fxml/about-layout.fxml", null);
     }
+
+    public void search(ActionEvent actionEvent) throws OrderException {
+        if(!searchField.getText().equals("")) {
+            try {
+                lvRestorani.setItems(FXCollections.observableList(restoraniManager.searchByLocation(searchField.getText())));
+                lvRestorani.getSelectionModel().selectFirst();
+                tableViewJela.getSelectionModel().selectFirst();
+                lvRestorani.refresh();
+            } catch (OrderException e) {
+                new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+            }
+        }
+        else{
+            lvRestorani.getItems().clear();
+            listaRestorana = FXCollections.observableArrayList(restoraniManager.getAll());
+            lvRestorani.setItems(listaRestorana);
+            lvRestorani.getSelectionModel().selectFirst();
+            tableViewJela.getSelectionModel().selectFirst();
+            lvRestorani.refresh();
+        }
+    }
 }
