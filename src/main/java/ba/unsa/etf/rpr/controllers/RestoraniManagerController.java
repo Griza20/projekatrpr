@@ -27,7 +27,22 @@ public class RestoraniManagerController {
             System.out.println("Problem sa getAll metodom restoraniManager");
             throw new RuntimeException(e);
         }
+    }
 
+    @FXML
+    void initialize() {
+        restoChoice.setItems(restorani);
+        restoChoice.getSelectionModel().selectedItemProperty().addListener((obs, oldRestoran, newRestoran) -> {
+            if(oldRestoran != null) {
+                vlasnikField.textProperty().unbindBidirectional(restoranModel.vlasnik);
+                lokacijaField.textProperty().unbindBidirectional(restoranModel.lokacija);
+                nazivField.textProperty().unbindBidirectional(restoranModel.naziv);
+            }
+            restoranModel.fromRestoran(newRestoran);
+            nazivField.textProperty().bindBidirectional(restoranModel.naziv);
+            vlasnikField.textProperty().bindBidirectional(restoranModel.vlasnik);
+            lokacijaField.textProperty().bindBidirectional(restoranModel.lokacija);
+        });
     }
 
     public class RestoranModel{
