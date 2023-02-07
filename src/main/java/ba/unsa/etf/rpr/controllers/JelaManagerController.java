@@ -81,6 +81,13 @@ public class JelaManagerController {
         }
     }
 
+    public void izbrisiClick(ActionEvent actionEvent) throws OrderException {
+        Jela j = jeloModel.toJelo();
+        jelaManager.delete(j.getId());
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
+
     public class JeloModel{
         public Integer id, restoId;
         public SimpleStringProperty jelo = new SimpleStringProperty();
