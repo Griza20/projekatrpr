@@ -63,6 +63,11 @@ public class RestoraniManagerController {
         scenaZaZatvoriti.close();
     }
 
+    public void izlazClick(ActionEvent actionEvent){
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
+
     public class RestoranModel{
         public Integer id;
         public SimpleStringProperty vlasnik = new SimpleStringProperty();
