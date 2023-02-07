@@ -45,6 +45,17 @@ public class RestoraniManagerController {
         });
     }
 
+    public void promijeniClick(ActionEvent actionEvent){
+        try{
+            Restorani r = restoranModel.toRestoran();
+            restoraniManager.update(r);
+            Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+            scenaZaZatvoriti.close();
+        }catch (OrderException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
     public class RestoranModel{
         public Integer id;
         public SimpleStringProperty vlasnik = new SimpleStringProperty();
