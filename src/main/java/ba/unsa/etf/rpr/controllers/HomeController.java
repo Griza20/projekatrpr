@@ -115,4 +115,8 @@ public class HomeController {
     public void jelaClick(ActionEvent actionEvent){
         openDialog("Jela Manager", "/fxml/jelamanager-layout.fxml", new JelaManagerController());
     }
+    public void closeClick(ActionEvent actionEvent){
+        Stage scenaZaZatvoriti = (Stage) naruciButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
 }
