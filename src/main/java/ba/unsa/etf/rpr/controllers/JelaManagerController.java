@@ -70,6 +70,17 @@ public class JelaManagerController {
         });
     }
 
+    public void promijeniClick(ActionEvent actionEvent){
+        try{
+            Jela j = jeloModel.toJelo();
+            jelaManager.update(j);
+            Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+            scenaZaZatvoriti.close();
+        }catch (OrderException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
     public class JeloModel{
         public Integer id, restoId;
         public SimpleStringProperty jelo = new SimpleStringProperty();
