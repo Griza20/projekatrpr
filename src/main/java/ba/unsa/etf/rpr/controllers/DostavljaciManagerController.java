@@ -53,6 +53,17 @@ public class DostavljaciManagerController {
         });
     }
 
+    public void promijeniClick(ActionEvent actionEvent){
+        try{
+            Dostavljaci d = dostavljacModel.toDostavljac();
+            dostavljaciManager.update(d);
+            Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+            scenaZaZatvoriti.close();
+        }catch (OrderException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
     public class DostavljacModel{
         public Integer id;
         public int visina;
