@@ -79,4 +79,9 @@ public class DostavljaciController {
             stage.close();
         }
     }
+
+    public void clickIzlaz(ActionEvent actionEvent) {
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
 }
