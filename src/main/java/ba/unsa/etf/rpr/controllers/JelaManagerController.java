@@ -88,6 +88,11 @@ public class JelaManagerController {
         scenaZaZatvoriti.close();
     }
 
+    public void izlazClick(ActionEvent actionEvent){
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
+
     public class JeloModel{
         public Integer id, restoId;
         public SimpleStringProperty jelo = new SimpleStringProperty();
