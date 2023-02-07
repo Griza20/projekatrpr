@@ -57,4 +57,26 @@ public class DostavljaciController {
         brojField.getStyleClass().removeAll("poljeNijeIspravno");
         datumField.getStyleClass().removeAll("poljeNijeIspravno");
     }
+
+    public void clickDodaj(ActionEvent actionEvent) throws OrderException {
+        imeField.getStyleClass().removeAll("poljeNijeIspravno");
+        prezimeField.getStyleClass().removeAll("poljeNijeIspravno");
+        brojField.getStyleClass().removeAll("poljeNijeIspravno");
+        datumField.getStyleClass().removeAll("poljeNijeIspravno");
+        if(this.validacija()){
+            Dostavljaci d = new Dostavljaci();
+            d.setIme(imeField.getText());
+            d.setPrezime(prezimeField.getText());
+            d.setBroj(brojField.getText());
+            d.setDatumRodjenja(Date.valueOf(datumField.getValue()));
+            d.setVozacka(vozackaBox.isSelected());
+            d.setVisina((int)visinaSlider.getValue());
+            if(muskoButton.isSelected())d.setSpol("M");
+            else d.setSpol("Z");
+            dostavljaciManager.add(d);
+            Node n = (Node) actionEvent.getSource();
+            Stage stage = (Stage) n.getScene().getWindow();
+            stage.close();
+        }
+    }
 }
