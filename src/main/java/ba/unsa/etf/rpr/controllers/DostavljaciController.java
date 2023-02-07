@@ -25,4 +25,28 @@ public class DostavljaciController {
     DostavljaciManager dostavljaciManager;
 
     public DostavljaciController(){ dostavljaciManager = new DostavljaciManager(); }
+
+    private boolean validacija(){
+        boolean v=true;
+        if(imeField.getText().isEmpty()){
+            v=false;
+            imeField.getStyleClass().add("poljeNijeIspravno");
+        }
+        if(prezimeField.getText().isEmpty()){
+            v=false;
+            prezimeField.getStyleClass().add("poljeNijeIspravno");
+        }
+        if(brojField.getText().isEmpty()){
+            v=false;
+            brojField.getStyleClass().add("poljeNijeIspravno");
+        }
+        if(datumField.getValue()==null || datumField.getValue().isAfter(LocalDate.now())){
+            v=false;
+            datumField.getStyleClass().add("poljeNijeIspravno");
+        }
+        if(!muskoButton.isSelected() && !zenskoButton.isSelected()){
+            v=false;
+        }
+        return v;
+    }
 }
