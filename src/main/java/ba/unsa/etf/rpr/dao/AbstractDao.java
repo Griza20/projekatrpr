@@ -25,10 +25,10 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             this.imeTabele=imeTabele;
             this.idIme = "id" + this.imeTabele.substring(0,this.imeTabele.length()-1);
             if(this.imeTabele.equals("Narudzbe")){
-                idIme = idIme + "e" + " = ?";
+                idIme = idIme + "e";
             }
             else{
-                idIme = idIme + "a" + " = ?";
+                idIme = idIme + "a";
             }
             FileReader reader = new FileReader("baza.properties");
             Properties property = new Properties();
@@ -117,11 +117,11 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             PreparedStatement stmt = this.connection.prepareStatement(builder.toString());
             int counter = 1;
             for (Map.Entry<String, Object> entry: row.entrySet()) {
-                if (entry.getKey().equals("id")) continue;
+                if (entry.getKey().equals(idIme)) continue;
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
-            stmt.setObject(counter+1, item.getId());
+            stmt.setObject(counter, item.getId());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
