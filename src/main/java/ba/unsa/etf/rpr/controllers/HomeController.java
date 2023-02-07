@@ -99,4 +99,8 @@ public class HomeController {
     public void djClick(ActionEvent actionEvent) {
         openDialog("Dodavanje jela", "/fxml/jela-layout.fxml", new JelaController(lvRestorani.getSelectionModel().getSelectedItem().getId()));
     }
+
+    public void naruciClick(ActionEvent actionEvent){
+        openDialog("Narucivanje", "/fxml/narudzba-layout.fxml", new NarudzbeController(tableViewJela.getSelectionModel().getSelectedItem(),lvRestorani.getSelectionModel().getSelectedItem()));
+    }
 }
