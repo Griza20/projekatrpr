@@ -107,4 +107,8 @@ public class HomeController {
     public void dostavljaciClick(ActionEvent actionEvent) {
         openDialog("Dostavljaci Manager", "/fxml/dostavljacimanager-layout.fxml", new DostavljaciManagerController());
     }
+
+    public void restoraniClick(ActionEvent actionEvent) {
+        openDialog("Restorani Manager", "/fxml/restoranimanager-layout.fxml", new RestoraniManagerController());
+    }
 }
