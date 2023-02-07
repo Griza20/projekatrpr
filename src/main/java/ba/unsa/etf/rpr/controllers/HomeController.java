@@ -95,4 +95,8 @@ public class HomeController {
     public void ddClick(ActionEvent actionEvent) throws IOException {
         openDialog("Dodavanje dostavljaca", "/fxml/dostavljaci-layout.fxml", new DostavljaciController());
     }
+
+    public void djClick(ActionEvent actionEvent) {
+        openDialog("Dodavanje jela", "/fxml/jela-layout.fxml", new JelaController(lvRestorani.getSelectionModel().getSelectedItem().getId()));
+    }
 }
