@@ -66,4 +66,21 @@ public class NarudzbeController {
     public String getLabela(){
         return labela.get();
     }
+
+    public void naruciClick(ActionEvent actionEvent) throws OrderException {
+        karticaField.getStyleClass().removeAll("poljeNijeIspravno");
+        codeField.getStyleClass().removeAll("poljeNijeIspravno");
+        dateField.getStyleClass().removeAll("poljeNijeIspravno");
+        if(this.validacija()) {
+            Narudzbe n = new Narudzbe();
+            n.setId(brojac++);
+            n.setVrijemeNarucivanja(LocalTime.now().toString());
+            n.setNarudzba(j.getJelo());
+            n.setIdRestorana(r.getId());
+            n.setIdDostavljaca(1);
+            narudzbeManager.add(n);
+            Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+            scenaZaZatvoriti.close();
+        }
+    }
 }
