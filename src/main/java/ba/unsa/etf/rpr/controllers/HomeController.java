@@ -87,4 +87,8 @@ public class HomeController {
         ddButton.setFocusTraversable(false);
         djButton.setFocusTraversable(false);
     }
+
+    public void drClick(ActionEvent actionEvent) throws IOException {
+        openDialog("Dodavanje restorana", "/fxml/restaurant-layout.fxml", new RestoraniController());
+    }
 }
