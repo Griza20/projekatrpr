@@ -36,4 +36,10 @@ public class JelaController {
         jelaManager = new JelaManager();
         idResto=idRestorana;
     }
+
+    @FXML
+    void initialize(){
+        nazivField.getStyleClass().removeAll("poljeNijeIspravno");
+        opisField.getStyleClass().removeAll("poljeNijeIspravno");
+    }
 }
