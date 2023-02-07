@@ -64,6 +64,13 @@ public class DostavljaciManagerController {
         }
     }
 
+    public void brisiClick(ActionEvent actionEvent) throws OrderException {
+        Dostavljaci d = dostavljacModel.toDostavljac();
+        dostavljaciManager.delete(d.getId());
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
+
     public class DostavljacModel{
         public Integer id;
         public int visina;
