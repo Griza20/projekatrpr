@@ -30,4 +30,11 @@ public class RestoraniController {
     public RestoraniController(){
         restoraniManager = new RestoraniManager();
     }
+
+    @FXML
+    void initialize(){
+        imeVlasnika.getStyleClass().removeAll("poljeNijeIspravno");
+        nazivRestorana.getStyleClass().removeAll("poljeNijeIspravno");
+        lokacijaRestorana.getStyleClass().removeAll("poljeNijeIspravno");
+    }
 }
