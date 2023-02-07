@@ -103,4 +103,8 @@ public class HomeController {
     public void naruciClick(ActionEvent actionEvent){
         openDialog("Narucivanje", "/fxml/narudzba-layout.fxml", new NarudzbeController(tableViewJela.getSelectionModel().getSelectedItem(),lvRestorani.getSelectionModel().getSelectedItem()));
     }
+
+    public void dostavljaciClick(ActionEvent actionEvent) {
+        openDialog("Dostavljaci Manager", "/fxml/dostavljacimanager-layout.fxml", new DostavljaciManagerController());
+    }
 }
