@@ -31,9 +31,9 @@
             <String fx:value="poljeNijeIspravno" />
             <String fx:value="poljeJeIspravno" />
          </styleClass></TextField>
-      <Hyperlink fx:id="registerLink" onAction="#registerClick" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-      <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginClick" stylesheets="@../css/login.css" text="Log in" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <PasswordField fx:id="pwField" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Hyperlink fx:id="registerLink" onAction="#registerClick" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <Button fx:id="loginButton" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginClick" stylesheets="@../css/login.css" text="Log in" GridPane.columnSpan="2" GridPane.rowIndex="3" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
