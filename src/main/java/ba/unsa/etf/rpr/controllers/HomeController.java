@@ -119,4 +119,8 @@ public class HomeController {
         Stage scenaZaZatvoriti = (Stage) naruciButton.getScene().getWindow();
         scenaZaZatvoriti.close();
     }
+
+    public void aboutClick(ActionEvent actionEvent){
+        openDialog("About Window", "/fxml/about-layout.fxml", null);
+    }
 }
