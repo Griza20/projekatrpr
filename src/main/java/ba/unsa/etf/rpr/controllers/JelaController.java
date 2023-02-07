@@ -58,4 +58,9 @@ public class JelaController {
             stage.close();
         }
     }
+
+    public void izlazClick(ActionEvent actionEvent) {
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
 }
