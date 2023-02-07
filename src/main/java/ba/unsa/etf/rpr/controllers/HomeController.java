@@ -111,4 +111,8 @@ public class HomeController {
     public void restoraniClick(ActionEvent actionEvent) {
         openDialog("Restorani Manager", "/fxml/restoranimanager-layout.fxml", new RestoraniManagerController());
     }
+
+    public void jelaClick(ActionEvent actionEvent){
+        openDialog("Jela Manager", "/fxml/jelamanager-layout.fxml", new JelaManagerController());
+    }
 }
