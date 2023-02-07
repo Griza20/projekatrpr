@@ -83,4 +83,9 @@ public class NarudzbeController {
             scenaZaZatvoriti.close();
         }
     }
+
+    public void prekidClick(ActionEvent actionEvent){
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
 }
