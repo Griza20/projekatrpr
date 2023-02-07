@@ -49,4 +49,12 @@ public class DostavljaciController {
         }
         return v;
     }
+
+    @FXML
+    void initialize(){
+        imeField.getStyleClass().removeAll("poljeNijeIspravno");
+        prezimeField.getStyleClass().removeAll("poljeNijeIspravno");
+        brojField.getStyleClass().removeAll("poljeNijeIspravno");
+        datumField.getStyleClass().removeAll("poljeNijeIspravno");
+    }
 }
