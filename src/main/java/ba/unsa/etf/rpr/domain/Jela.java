@@ -59,11 +59,7 @@ public class Jela implements Idable {
 
     @Override
     public String toString() {
-        return "Jela{" +
-                "idJela=" + idJela +
-                ", idRestorana=" + idRestorana +
-                ", jelo='" + jelo + '\'' +
-                '}';
+        return jelo;
     }
 
     @Override
@@ -73,6 +69,6 @@ public class Jela implements Idable {
 
     @Override
     public void setId(int id) {
-        this.idJela = idJela;
+        this.idJela = id;
     }
 }
