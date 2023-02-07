@@ -55,4 +55,36 @@ public class HomeController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
+    @FXML
+    public void initialize(){
+        try {
+            listaRestorana.addAll(restoraniManager.getAll());
+        } catch (OrderException e) {
+            System.out.println("Something went wrong with restoraniManager");
+            throw new RuntimeException(e);
+        }
+        kolonaCijena.setCellValueFactory(new PropertyValueFactory<Jela, Integer>("cijena"));
+        kolonaJelo.setCellValueFactory(new PropertyValueFactory<Jela, String>("jelo"));
+        opisKolona.setCellValueFactory(new PropertyValueFactory<Jela, String>("opis"));
+        lvRestorani.setItems(listaRestorana);
+        lvRestorani.getSelectionModel().selectedItemProperty().addListener((obs, prethodniRestoran, trenutniRestoran) -> {
+            tableViewJela.getItems().clear();
+            if(trenutniRestoran!=null) {
+                try {
+                    List<Jela> j = jelaManager.getAllMealsFromRestaurant(trenutniRestoran.getId());
+                    listaJela.addAll(j);
+                } catch (OrderException e) {
+                    throw new RuntimeException(e);
+                }
+                tableViewJela.setItems(listaJela);
+                tableViewJela.getSelectionModel().selectFirst();
+            }
+        });
+        lvRestorani.getSelectionModel().selectFirst();
+        tableViewJela.getSelectionModel().selectFirst();
+        drButton.setFocusTraversable(false);
+        ddButton.setFocusTraversable(false);
+        djButton.setFocusTraversable(false);
+    }
 }
