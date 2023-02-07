@@ -56,6 +56,13 @@ public class RestoraniManagerController {
         }
     }
 
+    public void izbrisiClick(ActionEvent actionEvent) throws OrderException {
+        Restorani r = restoranModel.toRestoran();
+        restoraniManager.delete(r.getId());
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
+
     public class RestoranModel{
         public Integer id;
         public SimpleStringProperty vlasnik = new SimpleStringProperty();
