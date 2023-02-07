@@ -66,4 +66,9 @@ public class RestoraniController {
             stage.close();
         }
     }
+
+    public void izlazButton(ActionEvent actionEvent) {
+        Stage scenaZaZatvoriti = (Stage) izlaz.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
 }
