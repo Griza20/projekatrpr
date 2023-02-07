@@ -24,7 +24,7 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
             Jela jela = new Jela();
             jela.setId(rs.getInt("idJela"));
             jela.setJelo(rs.getString("jelo"));
-            jela.setCijena(rs.getInt("cijena"));
+            jela.setCijena(rs.getDouble("cijena"));
             jela.setOpis(rs.getString("opis"));
             jela.setIdRestorana(rs.getInt("idRestorana"));
             return jela;
