@@ -71,6 +71,11 @@ public class DostavljaciManagerController {
         scenaZaZatvoriti.close();
     }
 
+    public void izlazClick(ActionEvent actionEvent){
+        Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
+        scenaZaZatvoriti.close();
+    }
+
     public class DostavljacModel{
         public Integer id;
         public int visina;
