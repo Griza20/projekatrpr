@@ -91,4 +91,8 @@ public class HomeController {
     public void drClick(ActionEvent actionEvent) throws IOException {
         openDialog("Dodavanje restorana", "/fxml/restaurant-layout.fxml", new RestoraniController());
     }
+
+    public void ddClick(ActionEvent actionEvent) throws IOException {
+        openDialog("Dodavanje dostavljaca", "/fxml/dostavljaci-layout.fxml", new DostavljaciController());
+    }
 }
