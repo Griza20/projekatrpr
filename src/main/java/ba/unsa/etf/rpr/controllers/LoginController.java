@@ -51,7 +51,7 @@ public class LoginController {
     public void loginClick(ActionEvent actionEvent) {
         //Konektovanje na bazu
         try{
-            FileReader reader = new FileReader("baza.properties");
+            FileReader reader = new FileReader("C:\\Users\\User\\IdeaProjects\\projekatrpr\\src\\main\\resources\\baza.properties");
             Properties property = new Properties();
             property.load(reader);
             this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPR Baza?sessionVariables=WAIT_TIMEOUT=28800",property.getProperty("username"),property.getProperty("password"));
