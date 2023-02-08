@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,12 +13,18 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Properties;
 
+/**
+ * Controller class for manipulation with registration
+ */
 public class RegisterController {
     public TextField userField = new TextField();
     public PasswordField pwField = new PasswordField();
     public PasswordField rpwField = new PasswordField();
     private Connection connection;
 
+    /**
+     * This method takes care about initial colors of fields
+     */
     @FXML
     public void initialize() {
         userField.getStyleClass().removeAll("poljeNijeIspravno");
@@ -27,6 +32,10 @@ public class RegisterController {
         rpwField.getStyleClass().removeAll("poljeNijeIspravno");
     }
 
+    /**
+     * Adding a new user in database after checking if any field is empty or incorrect
+     * @param actionEvent
+     */
     public void registerClick(ActionEvent actionEvent) {
         userField.getStyleClass().removeAll("poljeNijeIspravno");
         pwField.getStyleClass().removeAll("poljeNijeIspravno");

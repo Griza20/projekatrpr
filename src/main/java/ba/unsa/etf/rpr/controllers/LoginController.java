@@ -22,6 +22,9 @@ import java.util.Properties;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * Controller class for manipulation with login
+ */
 public class LoginController {
     public Button loginButton;
     public GridPane loginScreen;
@@ -30,6 +33,9 @@ public class LoginController {
 
     private Connection connection;
 
+    /**
+     * This method takes care about initial colors of fields
+     */
     @FXML
     public void initialize() {
         userField.getStyleClass().removeAll("poljeJeIspravno");
@@ -48,6 +54,10 @@ public class LoginController {
         });
     }
 
+    /**
+     * Validates the user from database and logs into application
+     * @param actionEvent
+     */
     public void loginClick(ActionEvent actionEvent) {
         //Konektovanje na bazu
         try{
@@ -104,6 +114,10 @@ public class LoginController {
         }
     }
 
+    /**
+     * Opening new window for registration of a new user
+     * @param actionEvent
+     */
     public void registerClick(ActionEvent actionEvent) {
         try {
             final Stage loginStage = (Stage) loginScreen.getScene().getWindow();

@@ -11,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ * Controller class for manipulation with editing or deleting an existing restaurant
+ */
 public class RestoraniManagerController {
     public TextField vlasnikField, lokacijaField, nazivField;
     public ChoiceBox<Restorani> restoChoice;
@@ -18,6 +21,10 @@ public class RestoraniManagerController {
     private RestoraniManager restoraniManager;
     private ObservableList<Restorani> restorani;
     public Button izlazButton;
+
+    /**
+     * Constructor which gives value to atribute restorani which is important for choicebox initialization
+     */
     public RestoraniManagerController() {
         restoraniManager = new RestoraniManager();
         restoranModel = new RestoranModel();
@@ -29,6 +36,9 @@ public class RestoraniManagerController {
         }
     }
 
+    /**
+     * Method for bidirectional binding and unbinding
+     */
     @FXML
     void initialize() {
         restoChoice.setItems(restorani);
@@ -45,6 +55,10 @@ public class RestoraniManagerController {
         });
     }
 
+    /**
+     * Editting an already existing restaurant through bidirectional binded fields
+     * @param actionEvent
+     */
     public void promijeniClick(ActionEvent actionEvent){
         try{
             Restorani r = restoranModel.toRestoran();
@@ -56,6 +70,11 @@ public class RestoraniManagerController {
         }
     }
 
+    /**
+     * Deleting an already existing restaurant through bidirectional binded fields
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void izbrisiClick(ActionEvent actionEvent) throws OrderException {
         Restorani r = restoranModel.toRestoran();
         restoraniManager.delete(r.getId());
@@ -63,23 +82,40 @@ public class RestoraniManagerController {
         scenaZaZatvoriti.close();
     }
 
+    /**
+     * Closing the window for editing or deleting restaurant
+     * @param actionEvent
+     */
     public void izlazClick(ActionEvent actionEvent){
         Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
         scenaZaZatvoriti.close();
     }
 
+    /**
+     * Model class for easier databinding
+     */
     public class RestoranModel{
         public Integer id;
         public SimpleStringProperty vlasnik = new SimpleStringProperty();
         public SimpleStringProperty lokacija = new SimpleStringProperty();
         public SimpleStringProperty naziv = new SimpleStringProperty();
         public RestoranModel(){}
+
+        /**
+         * Initializing values of property atributes
+         * @param restorani instance of bean class Restorani
+         */
         public void fromRestoran(Restorani restorani){
             this.id = restorani.getId();
             this.naziv = new SimpleStringProperty(restorani.getNaziv());
             this.vlasnik = new SimpleStringProperty(restorani.getVlasnik());
             this.lokacija = new SimpleStringProperty(restorani.getLokacija());
         }
+
+        /**
+         * Creating an instance of bean class Restorani and initializing atributes with correct values
+         * @return instance of bean class Restorani
+         */
         public Restorani toRestoran() {
             Restorani r = new Restorani();
             r.setId(restoranModel.id);

@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Controller class for manipulation with adding new deliverer
+ */
 public class DostavljaciController {
     public Button dodajButton;
     public DatePicker datumField;
@@ -26,6 +29,10 @@ public class DostavljaciController {
 
     public DostavljaciController(){ dostavljaciManager = new DostavljaciManager(); }
 
+    /**
+     * Method that validates text fields and date picker
+     * @return true if fields aren't empty, else false
+     */
     private boolean validacija(){
         boolean v=true;
         if(imeField.getText().isEmpty()){
@@ -50,6 +57,9 @@ public class DostavljaciController {
         return v;
     }
 
+    /**
+     * This method takes care about initial colors of fields
+     */
     @FXML
     void initialize(){
         imeField.getStyleClass().removeAll("poljeNijeIspravno");
@@ -58,6 +68,11 @@ public class DostavljaciController {
         datumField.getStyleClass().removeAll("poljeNijeIspravno");
     }
 
+    /**
+     * Adds a new deliverer in database if validation check is true
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void clickDodaj(ActionEvent actionEvent) throws OrderException {
         imeField.getStyleClass().removeAll("poljeNijeIspravno");
         prezimeField.getStyleClass().removeAll("poljeNijeIspravno");
@@ -80,6 +95,10 @@ public class DostavljaciController {
         }
     }
 
+    /**
+     * Closes the current window for adding a new deliverer
+     * @param actionEvent
+     */
     public void clickIzlaz(ActionEvent actionEvent) {
         Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
         scenaZaZatvoriti.close();

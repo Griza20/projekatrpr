@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.time.LocalTime;
 
+/**
+ * Controller class for manipulation with adding new order
+ */
 public class NarudzbeController {
     public Button izlazButton;
     public RadioButton kesButton, karticaButton;
@@ -25,6 +27,10 @@ public class NarudzbeController {
     private static int brojac = 0;
     private NarudzbeManager narudzbeManager;
 
+    /**
+     * Method that validates text fields and date picker
+     * @return true if fields aren't empty, else false
+     */
     private boolean validacija(){
         boolean v=true;
         if(karticaButton.isSelected()){
@@ -44,6 +50,9 @@ public class NarudzbeController {
         return v;
     }
 
+    /**
+     * This method takes care about initial colors of fields
+     */
     @FXML
     void initialize(){
         karticaField.getStyleClass().removeAll("poljeNijeIspravno");
@@ -51,6 +60,11 @@ public class NarudzbeController {
         dateField.getStyleClass().removeAll("poljeNijeIspravno");
     }
 
+    /**
+     * Constructor which gets information which meal from which restaurant is ordered
+     * @param j instance of bean class Jela
+     * @param r instance of bean class Restorani
+     */
     public NarudzbeController(Jela j, Restorani r){
         this.j=j;
         this.r=r;
@@ -59,6 +73,10 @@ public class NarudzbeController {
         narudzbeManager = new NarudzbeManager();
     }
 
+    /**
+     * Methods for one-way binding with label on window
+     * @return string property
+     */
     public SimpleStringProperty labelaProperty(){
         return labela;
     }
@@ -67,6 +85,11 @@ public class NarudzbeController {
         return labela.get();
     }
 
+    /**
+     * Adds a new order in database if validation check is true
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void naruciClick(ActionEvent actionEvent) throws OrderException {
         karticaField.getStyleClass().removeAll("poljeNijeIspravno");
         codeField.getStyleClass().removeAll("poljeNijeIspravno");
@@ -84,6 +107,10 @@ public class NarudzbeController {
         }
     }
 
+    /**
+     * Closes the current window for adding a new order
+     * @param actionEvent
+     */
     public void prekidClick(ActionEvent actionEvent){
         Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
         scenaZaZatvoriti.close();

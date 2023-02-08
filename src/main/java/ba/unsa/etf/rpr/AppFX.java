@@ -10,7 +10,15 @@ import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX main class that shows first scene of application Sistem-narucivanja v1.0
+ */
 public class AppFX extends Application {
+    /**
+     * Main runnable method
+     * @param primarystage
+     * @throws Exception
+     */
     public void start(Stage primarystage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login-layout.fxml")));
         primarystage.setTitle("Login Screen");

@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.sql.Connection;
 
+/**
+ * Controller class for manipulation with adding new restaurant
+ */
 public class RestoraniController {
     public TextField lokacijaRestorana;
     public TextField nazivRestorana;
@@ -24,6 +27,9 @@ public class RestoraniController {
         restoraniManager = new RestoraniManager();
     }
 
+    /**
+     * This method takes care about initial colors of fields
+     */
     @FXML
     void initialize(){
         imeVlasnika.getStyleClass().removeAll("poljeNijeIspravno");
@@ -31,6 +37,11 @@ public class RestoraniController {
         lokacijaRestorana.getStyleClass().removeAll("poljeNijeIspravno");
     }
 
+    /**
+     * Adds a new restaurant in database if validation check is true
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void dodajButton(ActionEvent actionEvent) throws OrderException {
         boolean validacija=true;
         imeVlasnika.getStyleClass().removeAll("poljeNijeIspravno");
@@ -60,6 +71,10 @@ public class RestoraniController {
         }
     }
 
+    /**
+     * Closes the current window for adding a new restaurant
+     * @param actionEvent
+     */
     public void izlazButton(ActionEvent actionEvent) {
         Stage scenaZaZatvoriti = (Stage) izlaz.getScene().getWindow();
         scenaZaZatvoriti.close();

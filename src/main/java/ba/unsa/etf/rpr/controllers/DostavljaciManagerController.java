@@ -14,7 +14,9 @@ import javafx.stage.Stage;
 import java.sql.Date;
 import java.time.LocalDate;
 
-
+/**
+ * Controller class for manipulation with editing or deleting an existing deliverer
+ */
 public class DostavljaciManagerController {
     public TextField fldIme, fldPrezime, fldBroj;
     public DatePicker datumPicker;
@@ -23,6 +25,10 @@ public class DostavljaciManagerController {
     private DostavljaciManager dostavljaciManager;
     private ObservableList<Dostavljaci> dostavljaci;
     public Button izlazButton;
+
+    /**
+     * Constructor which gives value to atribute dostavljaci which is important for choicebox initialization
+     */
     public DostavljaciManagerController() {
         dostavljaciManager = new DostavljaciManager();
         dostavljacModel = new DostavljacModel();
@@ -35,6 +41,9 @@ public class DostavljaciManagerController {
 
     }
 
+    /**
+     * Method for bidirectional binding and unbinding
+     */
     @FXML
     void initialize() {
         choiceDostavljaci.setItems(dostavljaci);
@@ -53,6 +62,10 @@ public class DostavljaciManagerController {
         });
     }
 
+    /**
+     * Editting an already existing deliverer through bidirectional binded fields
+     * @param actionEvent
+     */
     public void promijeniClick(ActionEvent actionEvent){
         try{
             Dostavljaci d = dostavljacModel.toDostavljac();
@@ -64,6 +77,11 @@ public class DostavljaciManagerController {
         }
     }
 
+    /**
+     * Deleting an already existing deliverer through bidirectional binded fields
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void brisiClick(ActionEvent actionEvent) throws OrderException {
         Dostavljaci d = dostavljacModel.toDostavljac();
         dostavljaciManager.delete(d.getId());
@@ -71,11 +89,18 @@ public class DostavljaciManagerController {
         scenaZaZatvoriti.close();
     }
 
+    /**
+     * Closing the window for editing or deleting deliverer
+     * @param actionEvent
+     */
     public void izlazClick(ActionEvent actionEvent){
         Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
         scenaZaZatvoriti.close();
     }
 
+    /**
+     * Model class for easier databinding
+     */
     public class DostavljacModel{
         public Integer id;
         public int visina;
@@ -86,6 +111,11 @@ public class DostavljaciManagerController {
         public SimpleStringProperty broj = new SimpleStringProperty();
         public SimpleObjectProperty<LocalDate> datumRodjenja = new SimpleObjectProperty<>();
         public DostavljacModel(){}
+
+        /**
+         * Initializing values of property atributes
+         * @param dostavljaci instance of bean class Dostavljaci
+         */
         public void fromDostavljac(Dostavljaci dostavljaci){
             this.id = dostavljaci.getId();
             this.spol = dostavljaci.getSpol();
@@ -96,6 +126,11 @@ public class DostavljaciManagerController {
             this.broj = new SimpleStringProperty(dostavljaci.getBroj());
             this.datumRodjenja = new SimpleObjectProperty<>(dostavljaci.getDatumRodjenja().toLocalDate());
         }
+
+        /**
+         * Creating an instance of bean class Dostavljaci and initializing atributes with correct values
+         * @return instance of bean class Dostavljaci
+         */
         public Dostavljaci toDostavljac() {
             Dostavljaci d = new Dostavljaci();
             d.setId(dostavljacModel.id);

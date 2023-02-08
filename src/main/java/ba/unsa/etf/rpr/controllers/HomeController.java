@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.util.List;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * Controller class for manipulation with main window
+ */
 public class HomeController {
     public Button drButton;
     public Button ddButton;
@@ -41,6 +44,12 @@ public class HomeController {
         jelaManager = new JelaManager();
     }
 
+    /**
+     * Opening new window from main home window
+     * @param title title of new window
+     * @param file resource file that has information about window preferences
+     * @param controller controller for manipulation with new window
+     */
     private void openDialog(String title, String file, Object controller){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
@@ -56,6 +65,9 @@ public class HomeController {
         }
     }
 
+    /**
+     * Initializing values of javafx components on home screen
+     */
     @FXML
     public void initialize(){
         try {
@@ -124,6 +136,11 @@ public class HomeController {
         openDialog("About Window", "/fxml/about-layout.fxml", null);
     }
 
+    /**
+     * Search bar on home window for finding a restaurants near specific location
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void search(ActionEvent actionEvent) throws OrderException {
         if(!searchField.getText().equals("")) {
             try {

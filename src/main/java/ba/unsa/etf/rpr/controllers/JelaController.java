@@ -11,7 +11,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
+/**
+ * Controller class for manipulation with adding new meal
+ */
 public class JelaController {
     public Button izlazButton;
     public TextField opisField;
@@ -19,6 +21,11 @@ public class JelaController {
     public Spinner<Double> cijenaSpinner;
     private JelaManager jelaManager;
     private int idResto;
+
+    /**
+     * Method that validates text fields
+     * @return true if fields aren't empty, else false
+     */
     private boolean validacija(){
         boolean v=true;
         if(nazivField.getText().isEmpty()){
@@ -37,12 +44,20 @@ public class JelaController {
         idResto=idRestorana;
     }
 
+    /**
+     * This method takes care about initial colors of fields
+     */
     @FXML
     void initialize(){
         nazivField.getStyleClass().removeAll("poljeNijeIspravno");
         opisField.getStyleClass().removeAll("poljeNijeIspravno");
     }
 
+    /**
+     * Adds a new meal in database if validation check is true
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void dodajClick(ActionEvent actionEvent) throws OrderException {
         nazivField.getStyleClass().removeAll("poljeNijeIspravno");
         opisField.getStyleClass().removeAll("poljeNijeIspravno");
@@ -59,6 +74,10 @@ public class JelaController {
         }
     }
 
+    /**
+     * Closes the current window for adding a new meal
+     * @param actionEvent
+     */
     public void izlazClick(ActionEvent actionEvent) {
         Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
         scenaZaZatvoriti.close();

@@ -20,6 +20,11 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         return this.connection;
     }
 
+    /**
+     * Constructor which makes connection with database and gives a value to param imeTabele
+     * which is important for calling other methods that need id
+     * @param imeTabele string which represents name of table
+     */
     public AbstractDao(String imeTabele){
         try{
             this.imeTabele=imeTabele;

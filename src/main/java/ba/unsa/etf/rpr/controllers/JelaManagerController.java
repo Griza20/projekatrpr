@@ -16,6 +16,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.util.List;
 
+/**
+ * Controller class for manipulation with editing or deleting an existing meal
+ */
 public class JelaManagerController {
     public TextField jeloField, opisField;
     public ChoiceBox<Restorani> restoChoice;
@@ -27,6 +30,9 @@ public class JelaManagerController {
     private ObservableList<Restorani> restorani;
     private ObservableList<Jela> listaJela = FXCollections.observableArrayList();
     public Button izlazButton;
+    /**
+     * Constructor which gives value to atribute restorani which is important for choicebox initialization
+     */
     public JelaManagerController() {
         jelaManager = new JelaManager();
         restoraniManager = new RestoraniManager();
@@ -39,7 +45,9 @@ public class JelaManagerController {
         }
 
     }
-
+    /**
+     * Method for bidirectional binding and unbinding
+     */
     @FXML
     void initialize() {
         restoChoice.setItems(restorani);
@@ -70,6 +78,10 @@ public class JelaManagerController {
         });
     }
 
+    /**
+     * Editting an already existing meal through bidirectional binded fields
+     * @param actionEvent
+     */
     public void promijeniClick(ActionEvent actionEvent){
         try{
             Jela j = jeloModel.toJelo();
@@ -81,6 +93,11 @@ public class JelaManagerController {
         }
     }
 
+    /**
+     * Deleting an already existing meal through bidirectional binded fields
+     * @param actionEvent
+     * @throws OrderException
+     */
     public void izbrisiClick(ActionEvent actionEvent) throws OrderException {
         Jela j = jeloModel.toJelo();
         jelaManager.delete(j.getId());
@@ -88,23 +105,40 @@ public class JelaManagerController {
         scenaZaZatvoriti.close();
     }
 
+    /**
+     * Closing the window for editing or deleting meal
+     * @param actionEvent
+     */
     public void izlazClick(ActionEvent actionEvent){
         Stage scenaZaZatvoriti = (Stage) izlazButton.getScene().getWindow();
         scenaZaZatvoriti.close();
     }
 
+    /**
+     * Model class for easier databinding
+     */
     public class JeloModel{
         public Integer id, restoId;
         public SimpleStringProperty jelo = new SimpleStringProperty();
         public SimpleStringProperty opis = new SimpleStringProperty();
         public DoubleProperty cijena = new SimpleDoubleProperty();
         public JeloModel(){}
+
+        /**
+         * Initializing values of property atributes
+         * @param j instance of bean class Jela
+         */
         public void fromJelo(Jela j){
             this.id = j.getId();
             this.jelo = new SimpleStringProperty(j.getJelo());
             this.opis = new SimpleStringProperty(j.getOpis());
             this.cijena = new SimpleDoubleProperty(j.getCijena());
         }
+
+        /**
+         * Creating an instance of bean class Jela and initializing atributes with correct values
+         * @return instance of bean class Jela
+         */
         public Jela toJelo() {
             Jela j = new Jela();
             j.setId(jeloModel.id);
