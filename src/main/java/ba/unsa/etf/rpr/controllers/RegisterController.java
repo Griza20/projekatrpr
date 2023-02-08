@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -58,10 +56,10 @@ public class RegisterController {
         if(test){
             //Konektovanje na bazu
             try{
-                FileReader reader = new FileReader("baza.properties");
+                FileReader reader = new FileReader("C:\\Users\\User\\IdeaProjects\\projekatrpr\\src\\main\\resources\\baza.properties");
                 Properties property = new Properties();
                 property.load(reader);
-                this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPR Baza",property.getProperty("username"),property.getProperty("password"));
+                this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPR Baza?sessionVariables=WAIT_TIMEOUT=28800",property.getProperty("username"),property.getProperty("password"));
             }catch(Exception e){
                 System.out.println("Nije uspostavljena konekcija sa bazom.");
                 e.printStackTrace();
