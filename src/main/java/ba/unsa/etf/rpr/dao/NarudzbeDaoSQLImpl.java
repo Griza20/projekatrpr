@@ -16,7 +16,7 @@ public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements Narudzb
         super("Narudzbe");
     }
     /**
-     * @author abrulic1
+     * @author Amar Grizovic
      * @return NarudzbeDaoSQLImpl
      * We don't need more than one object for CRUD operations on table 'Narudzbe' so we will use Singleton
      * This method will call private constructor in instance==null and then return that instance

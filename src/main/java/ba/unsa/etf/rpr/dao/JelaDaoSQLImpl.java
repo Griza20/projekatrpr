@@ -20,9 +20,9 @@ public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
     }
 
     /**
-     * @author abrulic1
-     * @return QuoteDaoSQLImpl
-     * We don't need more than one object for CRUD operations on table 'quotes' so we will use Singleton
+     * @author Amar Grizovic
+     * @return JelaDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'Jela' so we will use Singleton
      * This method will call private constructor in instance==null and then return that instance
      */
     public static JelaDaoSQLImpl getInstance(){

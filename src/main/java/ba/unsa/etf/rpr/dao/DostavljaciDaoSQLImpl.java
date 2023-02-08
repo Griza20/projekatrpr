@@ -13,7 +13,12 @@ import java.util.Date;
  */
 public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements DostavljaciDao{
     private static DostavljaciDaoSQLImpl instance = null;
-
+    /**
+     * @author Amar Grizovic
+     * @return DostavljaciDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'Dostavljaci' so we will use Singleton
+     * This method will call private constructor in instance==null and then return that instance
+     */
     public static DostavljaciDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new DostavljaciDaoSQLImpl();

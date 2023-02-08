@@ -11,8 +11,25 @@ import java.util.*;
  * @author Amar Grizovic
  */
 public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements RestoraniDao{
-    public RestoraniDaoSQLImpl(){
+    private static RestoraniDaoSQLImpl instance = null;
+    private RestoraniDaoSQLImpl(){
         super("Restorani");
+    }
+    /**
+     * @author Amar Grizovic
+     * @return RestoraniDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'Restorani' so we will use Singleton
+     * This method will call private constructor in instance==null and then return that instance
+     */
+    public static RestoraniDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new RestoraniDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
     /**
      * Lists all restaurants from table Restorani in database that have same manager

@@ -6,7 +6,7 @@ package ba.unsa.etf.rpr.dao;
  */
 public class DaoFactory {
     private static final DostavljaciDao dostavljaciDao = DostavljaciDaoSQLImpl.getInstance();
-    private static final RestoraniDao restoraniDao = new RestoraniDaoSQLImpl();
+    private static final RestoraniDao restoraniDao = RestoraniDaoSQLImpl.getInstance();
     private static final NarudzbeDao narudzbeDao = NarudzbeDaoSQLImpl.getInstance();
     private static final JelaDao jelaDao = JelaDaoSQLImpl.getInstance();
 
