@@ -14,8 +14,26 @@ import java.util.TreeMap;
  * @author Amar Grizovic
  */
 public class JelaDaoSQLImpl extends AbstractDao<Jela>  implements JelaDao{
-    public JelaDaoSQLImpl() {
+    private static JelaDaoSQLImpl instance = null;
+    private JelaDaoSQLImpl() {
         super("Jela");
+    }
+
+    /**
+     * @author abrulic1
+     * @return QuoteDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'quotes' so we will use Singleton
+     * This method will call private constructor in instance==null and then return that instance
+     */
+    public static JelaDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new JelaDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
