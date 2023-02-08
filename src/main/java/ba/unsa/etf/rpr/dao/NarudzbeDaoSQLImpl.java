@@ -11,8 +11,25 @@ import java.util.*;
  * @author Amar Grizovic
  */
 public class NarudzbeDaoSQLImpl extends AbstractDao<Narudzbe> implements NarudzbeDao{
-    public NarudzbeDaoSQLImpl(){
+    private static NarudzbeDaoSQLImpl instance = null;
+    private NarudzbeDaoSQLImpl(){
         super("Narudzbe");
+    }
+    /**
+     * @author abrulic1
+     * @return NarudzbeDaoSQLImpl
+     * We don't need more than one object for CRUD operations on table 'Narudzbe' so we will use Singleton
+     * This method will call private constructor in instance==null and then return that instance
+     */
+    public static NarudzbeDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new NarudzbeDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
