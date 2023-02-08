@@ -38,4 +38,12 @@ public class RestoraniManager {
     public List<Restorani> searchByLocation(String lokacija) throws OrderException {
         return DaoFactory.restoraniDao().searchByLocation(lokacija);
     }
+
+    public boolean visestrukiVlasnik(String ime, List<Restorani> restorani){
+        return DaoFactory.restoraniDao().visestrukiVlasnici(ime,restorani);
+    }
+
+    public boolean sirokSpektarRestorana(String lokacija, List<Restorani> restorani){
+        return DaoFactory.restoraniDao().sirokSpektarRestorana(lokacija,restorani);
+    }
 }

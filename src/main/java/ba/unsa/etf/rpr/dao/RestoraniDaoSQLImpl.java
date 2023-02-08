@@ -74,4 +74,10 @@ public class RestoraniDaoSQLImpl extends AbstractDao<Restorani> implements Resto
         row.put("lokacija", object.getLokacija());
         return row;
     }
+
+    public boolean visestrukiVlasnici(String ime, List<Restorani> restorani){
+        return restorani.size()>=2;
+    }
+
+    public boolean sirokSpektarRestorana(String lokacija, List<Restorani> restorani) { return restorani.size()>=2; }
 }

@@ -53,4 +53,38 @@ public class JelaManagerTest {
         assertTrue(dodao);
     }
 
+    @Test
+    void testiranjeUspjesnogGetAll(){
+        assertDoesNotThrow(() -> { jManager.getAll(); });
+    }
+
+    @Test
+    void testiranjeUspjesnogBrisanja(){
+        Jela j = new Jela();
+        j.setJelo("Test");
+        j.setCijena(1.);
+        j.setOpis("Test");
+        j.setIdRestorana(1);
+        boolean obrisao=true;
+        try {
+            jManager.add(j);
+            List<Jela> lista = jManager.getAllMealsFromRestaurant(1);
+            for(Jela x: lista){
+                if(x.getJelo().equals("Test")){
+                    jManager.delete(x.getId());
+                    break;
+                }
+            }
+            lista = jManager.getAllMealsFromRestaurant(1);
+            for(Jela x: lista){
+                if(x.getJelo().equals("Test")){
+                    obrisao=false;
+                    break;
+                }
+            }
+        } catch (OrderException e) {
+            throw new RuntimeException(e);
+        }
+        assertTrue(obrisao);
+    }
 }

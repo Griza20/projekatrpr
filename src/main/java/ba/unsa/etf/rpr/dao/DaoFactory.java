@@ -17,9 +17,7 @@ public class DaoFactory {
         return dostavljaciDao;
     }
 
-    public static RestoraniDao restoraniDao(){
-        return restoraniDao;
-    }
+    public static RestoraniDao restoraniDao(){ return restoraniDao; }
 
     public static NarudzbeDao narudzbeDao(){
         return narudzbeDao;

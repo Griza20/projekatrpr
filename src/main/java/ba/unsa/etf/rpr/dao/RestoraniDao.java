@@ -23,4 +23,20 @@ public interface RestoraniDao extends Dao<Restorani> {
      * @return List of all restaurants that are nearby
      */
     List<Restorani> searchByLocation(String lokacija) throws OrderException;
+
+    /**
+     * Checks if the given owner has 2 or more restaurants
+     * @param ime name of owner
+     * @param restorani list of restaurants
+     * @return true if has 2 or more, else false
+     */
+    boolean visestrukiVlasnici(String ime, List<Restorani> restorani);
+
+    /**
+     * Checks if the given location has 2 or more restaurants
+     * @param lokacija location
+     * @param restorani list of restaurants
+     * @return true if has 2 or more, else false
+     */
+    boolean sirokSpektarRestorana(String lokacija, List<Restorani> restorani);
 }
