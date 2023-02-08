@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr;
 
-import ba.unsa.etf.rpr.controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,7 @@ import java.util.Objects;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class MainFX extends Application {
+public class AppFX extends Application {
     public void start(Stage primarystage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/login-layout.fxml")));
         primarystage.setTitle("Login Screen");
