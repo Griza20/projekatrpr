@@ -12,7 +12,20 @@ import java.util.Date;
  * @author Amar Grizovic
  */
 public class DostavljaciDaoSQLImpl extends AbstractDao<Dostavljaci> implements DostavljaciDao{
-    public DostavljaciDaoSQLImpl(){
+    private static DostavljaciDaoSQLImpl instance = null;
+
+    public static DostavljaciDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new DostavljaciDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
+    }
+
+    private DostavljaciDaoSQLImpl(){
         super("Dostavljaci");
     }
 
